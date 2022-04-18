@@ -1,0 +1,24 @@
+<div class="card mb-3">
+  <h3 class="card-header">
+  <div class="card mb-3">
+    <h3 class="card-header"><%= @product.title %></h3>
+    <div class="card-body">
+        <h5 class="card-title"><%= @product.price %></h5>
+        <h6 class="card-subtitle text-muted">Rs</h6>
+    </div>
+    <img src="<%= @product.picture %>" class="d-block user-select-none" width="50%" height="350" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice">
+    <rect width="40%" height="100%" fill="#868e96"></rect>
+    </img>
+    <div class="card-body">
+    <p class="card-text"><small><%= @product.description %></small></p>
+    </div>
+  </div>
+  <%= link_to "Edit Listing", edit_product_path(@product) %>
+  <br>
+
+  <%= form_for(@product, :html => { :method => :delete, :remote => true }) do |f| %>
+    <button class="submit" action="submit"/>
+  <% end %>
+
+  <%= link_to "Delete Listing", product_path(@product), method: :delete, data: { confirm: "Are you sure?" } %>
+</div>
