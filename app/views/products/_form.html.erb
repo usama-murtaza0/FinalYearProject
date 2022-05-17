@@ -3,28 +3,32 @@
   <fieldset>
     <legend>Create a new Listing</legend>
     <div class="form-group">
-      <%= f.label :title, { class: "form-label" } %><br />
+      <%= f.label :title, { class: "form-label" } %><br>
       <%= f.text_field :title, autofocus: true, class: "form-control", placeholder: "Enter Product title" %>
     </div>
     <br>
     <div class="form-group">
       <%= f.label :price, { class: "form-label" } %><br>
-      <small id="contactHelp" class="form-text text-muted">Please enter in rupees</small><br>
-      <%= f.text_field :price, autofocus: true, class: "form-control", placeholder: "Enter product's price" %>
+      <%= f.text_field :price, autofocus: true, class: "form-control", placeholder: "Enter product's price in rupees" %>
     </div>
     <br>
     <div class="form-group">
-      <%= f.label :description, { class: "form-label" } %><br />
-      <%= f.text_area :description, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Enter product Description" %>
+      <%= f.label :description, { class: "form-label" } %><br>
+      <%= f.text_area :description, autofocus: true, class: "form-control", placeholder: "Enter product Description" %>
     </div>
     <br>
     <div class="form-group">
-      <%= f.label :picture, { classs: "form-label" } %><br />
+      <%= f.label :quantity, { class: "form-label" } %><br>
+      <%= f.text_field :quantity, autofocus: true, class: "form-control", placeholder: "Stock Available" %>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= f.label :picture, { class: "form-label" } %><br>
       <%= f.file_field :picture, class: "form-control" %>
     </div>
     <br>
     <br>
-    <%= f.submit "Create Listing" , { class: "btn btn-primary" } %>
+    <%= f.submit "Create Listing" , { class: "btn btn-primary form-control" } %>
   </fieldset>
 </form>
 
