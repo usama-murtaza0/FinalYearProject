@@ -6,16 +6,13 @@
         <h5 class="card-title"><%= @product.price %></h5>
         <h6 class="card-subtitle text-muted">Rs</h6>
     </div>
-    <img src="<%= @product.picture %>" class="d-block user-select-none" width="50%" height="350" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice">
-    <rect width="40%" height="100%" fill="#868e96"></rect>
+    <img src="<%= @product.picture %>" class="d-block user-select-none" width="25%" height="350" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice">
+      <rect width="40%" height="100%" fill="#868e96"></rect>
     </img>
     <div class="card-body">
-    <p class="card-text"><small><%= @product.description %></small></p>
+      <p class="card-text"><small><%= @product.description %></small></p>
     </div>
   </div>
-  <%= button_to "Add #{@product.title} to cart", line_items_path(:product_id => @product.id) %>
+  <%= button_to "Add #{@product.title} to cart", line_items_path(:product_id => @product.id), { class: "btn btn-primary form-control" } %>
   <br>
-  <%= link_to "Edit Listing", edit_product_path(@product) %>
-  <br>
-  <%= link_to "Delete Listing", product_path(@product), method: :delete, data: { confirm: "Are you sure?" } %>
 </div>

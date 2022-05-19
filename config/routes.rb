@@ -16,7 +16,12 @@ Rails.application.routes.draw do
 
   resources :orders
   devise_for :users
-  resources :users
+  resources :users do
+    member do
+      get :products
+    end
+  end
+
   resources :products
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "products#index"

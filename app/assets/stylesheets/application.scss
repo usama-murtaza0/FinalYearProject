@@ -157,8 +157,8 @@ p {
 }
 abbr[data-bs-original-title],
 abbr[title] {
-  -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
+  // -webkit-text-decoration: underline dotted;
+  // text-decoration: underline dotted;
   cursor: help;
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
@@ -222,7 +222,7 @@ sup {
 }
 a {
   color: #1a1a1a;
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:hover {
   color: #151515;
@@ -1938,7 +1938,7 @@ progress {
 }
 .form-label {
   display: block;
-  text-align: center;
+  text-align: left;
   margin-bottom: 0rem;
   margin-right: 50rem;
 }
@@ -1968,7 +1968,7 @@ progress {
   display: block;
   position: relative;
   margin: 0 auto;
-  width: 50%;
+  width: 100%;
   padding: 0.55rem 1.5rem;
   font-size: 1rem;
   font-weight: 400;
@@ -3382,7 +3382,7 @@ fieldset:disabled .btn {
 .btn-link {
   font-weight: 400;
   color: #1a1a1a;
-  text-decoration: underline;
+  // text-decoration: underline;
 }
 .btn-link:hover {
   color: #151515;
@@ -4452,6 +4452,7 @@ fieldset:disabled .btn {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
+  padding-bottom: 10px;
 }
 .card > hr {
   margin-right: 0;
@@ -7186,12 +7187,9 @@ fieldset:disabled .btn {
 .text-decoration-none {
   text-decoration: none !important;
 }
-.text-decoration-underline {
-  text-decoration: underline !important;
-}
-.text-decoration-line-through {
-  text-decoration: line-through !important;
-}
+// .text-decoration-line-through {
+//   text-decoration: line-through !important;
+// }
 .text-lowercase {
   text-transform: lowercase !important;
 }
@@ -7258,6 +7256,7 @@ fieldset:disabled .btn {
 .text-muted {
   --bs-text-opacity: 1;
   color: #919aa1 !important;
+  text-transform: capitalize;
 }
 .text-black-50 {
   --bs-text-opacity: 1;
@@ -10310,4 +10309,15 @@ th {
 
 .hidden {
   display: none;
+}
+
+.center {
+  border-radius: 35px;
+  margin: auto;
+  width: 50%;
+  background-color: #F5F5DC;
+  padding: 10px;
+}
+.card-parent{
+  padding-top: 10px;
 }

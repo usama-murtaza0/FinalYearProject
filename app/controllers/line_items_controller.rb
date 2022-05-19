@@ -43,6 +43,7 @@ class LineItemsController < ApplicationController
         @line_item.save
         redirect_to cart_path(@current_cart)
     end
+    
     private
     def line_item_params
         params.require(:line_item).permit(:quantity,:product_id, :cart_id)

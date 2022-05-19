@@ -7,10 +7,13 @@ before_action :configure_permitted_parameters, if: :devise_controller?
 before_action :current_cart
 
   def after_sign_in_path_for(user)
-    if current_user.user_type == "Customer"
+
+    if current_user.user_type == "Admin"
+      users_path(@user)
+    elsif current_user.user_type == "Customer"
       root_path
     else
-      new_product_path(@product)
+      user_path(current_user.id)
     end
   end
 
