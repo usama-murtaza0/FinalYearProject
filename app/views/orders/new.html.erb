@@ -1,20 +1,24 @@
 <%= form_for(@order) do |f| %>
-<form>
-    <fieldset>
-    <legend>Enter payment address</legend>
-    <div class="form-group">
-        <%= f.label :name, { class: "form-label" } %><br>
-        <%= f.text_field :name, required: true, autofocus: true, class: "form-control", placeholder: "Enter Your name" %>
-    </div>
-    <br>
-    <div class="form-group">
-        <%= f.label :email, { class: "form-label" } %><br>
-        <%= f.email_field :email, class: "form-control", placeholder: "Enter email" %>
-    </div>
-    <br>
-    <div class="form-group">
-        <%= f.label :address, { class: "form-label" } %><br>
-        <%= f.text_area :address, class: "form-control", placeholder: "Enter shipping address" %>
-    </div>
-    <%= f.submit "Place Order", { class: "btn btn-primary form-control" } %>
+<div class="center">
+    <form>
+        <fieldset>
+        <legend>Enter payment address</legend>
+        <div class="form-group">
+            <%= f.label :name, { class: "form-label" } %><br>
+            <%= f.text_field :name, required: true, autofocus: true, class: "form-control", placeholder: "Enter Your name" %>
+        </div>
+        <br>
+        <div class="form-group">
+            <%= f.label :email, { class: "form-label" } %><br>
+            <%= f.email_field :email, class: "form-control", placeholder: "Enter email" %>
+        </div>
+        <br>
+        <div class="form-group">
+            <%= f.label :address, { class: "form-label" } %><br>
+            <%= f.text_area :address, class: "form-control", placeholder: "Enter shipping address" %>
+        </div>
+        <br>
+        <%= f.submit "Place Order", { class: "btn btn-primary form-control" } %>
+    </form>
+</div>
 <% end %>

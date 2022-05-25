@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :find_user, except: [:index]
 
   def index
     @users = User.all.order("created_at DESC")

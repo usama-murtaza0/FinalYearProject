@@ -1,8 +1,7 @@
-require 'pry'
 class CartsController < ApplicationController
   
   def show
-    @cart = @current_cart
+    @cart = current_cart
   end
 
   def destroy

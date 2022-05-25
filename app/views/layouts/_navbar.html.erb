@@ -24,9 +24,9 @@
       </ul>
       <form class="d-flex">
         <% if current_user %>
-          <%= link_to 'LOGOUT', destroy_user_session_path, method: :delete, class: "btn btn-secondary"  %>
+          <%= link_to 'LOGOUT', destroy_user_session_path, method: :delete, class: "btn btn-navbar"  %>
         <% else %>
-          <%= link_to 'SIGN IN', user_session_path, class: "btn btn-secondary"  %>
+          <%= link_to 'SIGN IN', user_session_path, class: "btn btn-navbar"  %>
         <% end %>
       </form>
     </div>

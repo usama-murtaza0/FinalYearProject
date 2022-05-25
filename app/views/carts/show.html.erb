@@ -1,18 +1,26 @@
-<h2>Cart show</h2>
-<ul>
-  <% @cart.line_items.each do |line_item| %>
-    <li>Item: <%= line_item.product.name %> Price: <%= number_to_currency(line_item.product.price) %> Quantity: <%= line_item.quantity %> Total Price: <%= number_to_currency(line_item.total_price) %>
-    <ul>
-      <li>
-        <%= link_to "Add one", line_item_add_path(:id => line_item), method: :post %>
-        <%= link_to "Reduce one", line_item_reduce_path(:id => line_item), method: :post %>
-      </li>
-      <li>
-        <%= link_to "Remove item", line_item_path(line_item), method: :delete %>
-      </li>
-    </ul>
-  <% end %>
-</ul>
-<h3>Sub total: <%= number_to_currency(@cart.sub_total) %></h3>
-<%= link_to "Proceed to checkout", new_order_path %><br>
-<%= link_to "Empty cart", cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"} %>
+<div class="py-3">
+    <div class="container">
+      <div class="row hidden-md-up">  
+        <div class="card-single-show col-md-6">
+        <% @cart.line_items.each do |line_item| %>
+          <div class="card-body">                        
+          <% if line_item.product.picture.present? %>
+            <img src="<%= line_item.product.picture %>" class="d-block user-select-none" width="100%" height="250" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"></img>
+          <% else %>
+            <%= image_tag "placeholder_product.png" , class: "placeholder-img" %>
+          <% end %>
+          <h3 class="card-header">Item: <%= line_item.product.title %></h3>
+            <h5 class="card-title">Price: Rs <%= line_item.product.price %></h5> 
+            <h5 class="card-title">Quantity: <%= line_item.quantity %></h5> 
+            <h5 class="card-title">Total Price: Rs <%= line_item.total_price %></h5>
+                <%= link_to "Add one", line_item_add_path(:id => line_item), method: :post, class: "btn btn-cart" %>
+                <%= link_to "Reduce one", line_item_reduce_path(:id => line_item), method: :post, class: "btn btn-cart" %>
+                <%= link_to "Remove item", line_item_path(line_item), method: :delete, class: "btn btn-cart" %>
+                <br>
+          <% end %>
+          </div>
+        <h3>Sub total: Rs <%= @cart.sub_total %></h3>
+        <%= link_to "Proceed to checkout", new_order_path, class: "btn btn-primary" %><br>
+        <%= link_to "Empty cart", cart_path(@current_cart), class: "btn btn-secondary",method: :delete, data: {confirm: "Are you sure?"} %>
+
+

@@ -2,9 +2,7 @@ class ApplicationController < ActionController::Base
 
 protect_from_forgery with: :exception
 
-before_action :configure_permitted_parameters, if: :devise_controller?
-
-before_action :current_cart
+before_action :current_cart, :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(user)
 
@@ -18,6 +16,7 @@ before_action :current_cart
   end
 
   private
+
     def current_cart
       if session[:cart_id]
         cart = Cart.find_by(:id => session[:cart_id])
@@ -31,7 +30,9 @@ before_action :current_cart
       if session[:cart_id] == nil
         @current_cart = Cart.create
         session[:cart_id] = @current_cart.id
-      end
+      end 
+      
+      @current_cart
     end
 
     protected

@@ -45,10 +45,11 @@
       <br>
       <br>
       <%= f.submit "Sign up" , { class: "btn btn-primary" } %>
+      <br>
+      <%= render "devise/shared/links" %>
     </fieldset>
   </form>
 </div>
 <% end %> 
 
-<%= render "devise/shared/links" %>
 <%= javascript_pack_tag 'user_js' %>
