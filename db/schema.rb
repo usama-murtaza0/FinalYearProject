@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_24_160933) do
+ActiveRecord::Schema.define(version: 2022_06_03_162029) do
 
   create_table "carts", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -35,22 +35,31 @@ ActiveRecord::Schema.define(version: 2022_05_24_160933) do
   create_table "orders", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.text "address"
     t.integer "contact"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.string "payment_type"
+    t.boolean "delivery_status", default: false
+    t.string "city"
+    t.string "state"
+    t.string "address"
+    t.integer "postal_code"
   end
 
   create_table "products", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.integer "price"
-    t.string "picture"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "quantity"
     t.integer "user_id"
     t.integer "category_id"
+    t.string "size"
+    t.integer "sale"
+    t.string "packing"
+    t.json "pictures"
   end
 
   create_table "reviews", charset: "utf8mb4", force: :cascade do |t|
@@ -71,9 +80,14 @@ ActiveRecord::Schema.define(version: 2022_05_24_160933) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "contact"
     t.string "picture"
-    t.text "physical_store_address"
     t.string "user_name"
     t.string "user_type"
+    t.string "city"
+    t.string "state"
+    t.string "address"
+    t.integer "postal_code"
+    t.boolean "deactivated", default: false
+    t.boolean "order_status", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

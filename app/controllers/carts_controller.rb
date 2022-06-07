@@ -5,7 +5,7 @@ class CartsController < ApplicationController
   end
 
   def destroy
-    @cart = @current_cart
+    @cart = current_cart
     @cart.destroy
     session[:cart_id] = nil
     redirect_to root_path

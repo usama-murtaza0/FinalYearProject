@@ -1,26 +1,62 @@
-<div class="py-3">
-    <div class="container">
-      <div class="row hidden-md-up">  
-        <div class="card-single-show col-md-6">
+<section class="h-100" style="background-color: #eee;">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-10">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
+        </div>
         <% @cart.line_items.each do |line_item| %>
-          <div class="card-body">                        
-          <% if line_item.product.picture.present? %>
-            <img src="<%= line_item.product.picture %>" class="d-block user-select-none" width="100%" height="250" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"></img>
-          <% else %>
-            <%= image_tag "placeholder_product.png" , class: "placeholder-img" %>
-          <% end %>
-          <h3 class="card-header">Item: <%= line_item.product.title %></h3>
-            <h5 class="card-title">Price: Rs <%= line_item.product.price %></h5> 
-            <h5 class="card-title">Quantity: <%= line_item.quantity %></h5> 
-            <h5 class="card-title">Total Price: Rs <%= line_item.total_price %></h5>
-                <%= link_to "Add one", line_item_add_path(:id => line_item), method: :post, class: "btn btn-cart" %>
-                <%= link_to "Reduce one", line_item_reduce_path(:id => line_item), method: :post, class: "btn btn-cart" %>
-                <%= link_to "Remove item", line_item_path(line_item), method: :delete, class: "btn btn-cart" %>
-                <br>
-          <% end %>
+          <div class="card rounded-3 mb-4">
+            <div class="card-body p-4">
+              <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-md-2 col-lg-2 col-xl-2">
+                  <% if line_item.product.pictures.present? %>
+                    <img src="<%= line_item.product.pictures[0] %>" class="img-fluid rounded-3">
+                  <% else %>
+                    <%= image_tag "placeholder_product.png" , class: "img-fluid rounded-3" %>
+                  <% end %>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                  <p class="lead fw-normal mb-2"><%= line_item.product.title %></p>
+                  <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                  <%= button_to "-", line_item_reduce_path(:id => line_item), class: "btn btn-link px-2" %>
+
+                  <input id="form1" min="0" name="quantity" value="<%= line_item.quantity %>" type="number"
+                    class="form-control form-control-sm" />
+
+                  <%= button_to "+", line_item_add_path(:id => line_item), class: "btn btn-link px-2" %>
+                  
+                  <%= link_to "Remove item", line_item_path(line_item), method: :delete, class: "btn btn-link px-2" %>
+
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                  <h5 class="mb-0"><%= line_item.total_price %></h5>
+                </div>
+                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                  <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                </div>
+              </div>
+            </div>
           </div>
-        <h3>Sub total: Rs <%= @cart.sub_total %></h3>
-        <%= link_to "Proceed to checkout", new_order_path, class: "btn btn-primary" %><br>
-        <%= link_to "Empty cart", cart_path(@current_cart), class: "btn btn-secondary",method: :delete, data: {confirm: "Are you sure?"} %>
+        <% end %>
+
+        <div class="card">
+          <div class="card-body">
+            <%= link_to "Empty Cart", cart_path(@current_cart), class: "btn btn-warning btn-block btn-lg",method: :delete, data: {confirm: "Are you sure?"} %>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <%= link_to "Proceed to Pay", new_order_path, class: "btn btn-warning btn-block btn-lg" %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
 
 

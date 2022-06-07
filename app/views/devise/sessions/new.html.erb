@@ -1,32 +1,57 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<div class="center">
-  <form>
-    <fieldset>
-      <legend>Sign In</legend>
-      <div class="form-group">
-      <%= f.label :email, { class: "form-label" } %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
-    </div>
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <%= image_tag 'draw2.webp', class: "img-fluid" %>
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form>
+          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+            <p class="lead fw-normal mb-0 me-3">Sign in with</p>
+            <button type="button" class="btn btn-primary btn-floating mx-1">
+              <i class="fa fa-facebook"></i>
+            </button>
 
-    <div class="field">
-      <%= f.label :password, { class: "form-label" } %><br />
-      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+            <button type="button" class="btn btn-primary btn-floating mx-1">
+              <i class="fa fa-twitter"></i>
+            </button>
+          </div>
+
+          <div class="divider d-flex align-items-center my-4">
+            <p class="text-center fw-bold mx-3 mb-0">Or</p>
+          </div>
+
+          <div class="form-outline mb-4">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg", placeholder: "Enter a valid email address" %>
+            <label class="form-label" for="form3Example3">Email address</label>
+          </div>
+
+          <div class="form-outline mb-3">
+            <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-lg", placeholder: "Enter password" %>
+            <label class="form-label" for="form3Example4">Password</label>
+          </div>
+          <% if devise_mapping.rememberable? %>
+            <div class="d-flex justify-content-between align-items-center">
+            <div class="form-check mb-0">
+              <%= f.check_box :remember_me, class: "form-check-input me-2" %>
+              <label class="form-check-label" for="form2Example3">
+                Remember me
+              </label>
+            </div>
+            <a href="<%= new_password_path(resource_name) %>" class="text-body">Forgot password?</a>
+          </div>
+          <% end %>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <%= f.submit "Login", { class: "btn btn-primary btn-lg" , style: "padding-left: 2.5rem; padding-right: 2.5rem;" } %>
+            <p class="fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="<%= new_user_registration_path %>"
+                class="link-danger">Register</a></p>
+          </div>
+        </form>
+      </div>
     </div>
-    <br>
-  <!--  
-  #  <% if devise_mapping.rememberable? %>
-  #    <div class="field">
-  #      <%= f.check_box :remember_me %>
-  #      <%= f.label :remember_me %>
-  #    </div>
-  #  <% end %>
-  --> 
-    <div class="actions">
-      <%= f.submit "Log in", { class: "btn btn-primary form-control" } %>
-    </div><br>
-    <%= render "devise/shared/links" %>
-    </fieldset>
-    </form>
-</div>
+  </div>
+  <div>
 <% end %>
 

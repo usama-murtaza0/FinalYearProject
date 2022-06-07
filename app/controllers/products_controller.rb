@@ -1,11 +1,13 @@
+require 'pry'
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]  
   def index
-    @products = Product.all.order("created_at DESC")
+    @products = Product.all.where().order("created_at DESC")
   end
   
   def new
     @product = Product.new
+    @categories = Category.all
   end
   
   def create
@@ -19,6 +21,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -43,6 +46,7 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title, :price, :description, :picture, :quantity)
+    params.require(:product).permit(:title, :price, :description, :quantity, :packing, :size, :sale, { pictures: [] }, :category_id)
   end
+
 end

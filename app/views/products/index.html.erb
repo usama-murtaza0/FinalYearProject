@@ -1,39 +1,54 @@
-<div class="py-5">
+<div class="text-image-body">
+    <%=image_tag("banner_background.jpg") %>
+    <div class="text-image">Choose a healthy lifestyle</div>
+</div>
+<div class="py-5-index">
     <div class="container">
         <div class="row hidden-md-up">  
             <% @products.each do |product| %>
-                <div class="col-md-3 card-parent">
-                    <div class="card">
-                    <a href="<%= product_path(product.id) %>">
-                    <div class="card-block">
-                        <% if product.picture.present? %>
-                        <img src="<%= product.picture %>" class="d-block user-select-none" width="100%" height="250" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"></img>
-                        <% else %>
-                            <%= image_tag "placeholder_product.png" , class: "placeholder-img" %>
-                        <% end %>
-                        <h3 class="card-header"><%= truncate(product.title, :length => 15) %></h3>
-                        <div class="card-body">
-                            <h5 class="card-title"><%= product.price %> 
-                            <label class="card-subtitle text-muted">Rs</h5>
-                            </label>
+                <% if product.user.disabled? %>
+                    <div class="col-md-3 card-parent">
+                        <div class="card">
+                            <% if product.sale? %>
+                                <div class="badge text-white-badge position-absolute" style="top: 0.5rem; right: 0.5rem">
+                                   <%= product.sale %>%Off
+                                </div>
+                            <% end %>
+                            <a href="<%= product_path(product.id) %>">
+                                <div class="card-block">
+                                    <% if product.pictures.present? %>
+                                        <img src="<%= product.pictures[0] %>" class="placeholder-img" width="100%" height="250" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"></img>
+                                    <% else %>
+                                        <%= image_tag "placeholder_product.png" , class: "placeholder-img" %>
+                                    <% end %>
+                                    <div class="text-center">
+                                        <h3 class="card-header"><%= truncate(product.title, :length => 25) %></h3>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                            <% if product.sale? %>
+                                                <span class="text-muted text-decoration-line-through"><%= product.price %></span>
+                                                <%= product.price-(product.price*product.sale/100) %>
+                                                <label class="card-subtitle text-muted">Rs</h5>
+                                                </label>
+                                                <% product.price = product.price-(product.price*product.sale) %>
+                                            <% else %>
+                                                <%= product.price %>
+                                                <label class="card-subtitle text-muted">Rs</h5>
+                                                </label>
+                                            <% end %>
+                                        </div>
+                            </a>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><label class="card-subtitle">Qty: </label>
-                            <%= product.quantity %></h5>
-                            <h6 class="card-subtitle">Available</h6>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text"><small><%= truncate(product.description, :length => 20) %>...See More</small></p>
-                        </div>
-                        </a>
-                        <% 
-                        url = current_user ? line_items_path(:product_id => product.id) : new_user_session_path                 
-                        %>
-                        <%= button_to "Add #{product.title} to cart", url, { class: "btn btn-card" } %>
+                            <% 
+                            url = current_user ? line_items_path(:product_id => product.id) : new_user_session_path                 
+                            %>
+                            <%= button_to "Add to cart", url, { class: "btn btn-card-index" } %>
                     </div>
-                    </div>
-                </div>
+        </div>
+    </div>
+                <% end %>
             <% end %>
         </div>
     </div>
 </div>
+

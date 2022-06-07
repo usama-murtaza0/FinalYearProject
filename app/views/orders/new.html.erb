@@ -1,24 +1,86 @@
-<%= form_for(@order) do |f| %>
-<div class="center">
-    <form>
-        <fieldset>
-        <legend>Enter payment address</legend>
-        <div class="form-group">
-            <%= f.label :name, { class: "form-label" } %><br>
-            <%= f.text_field :name, required: true, autofocus: true, class: "form-control", placeholder: "Enter Your name" %>
+<%= form_for @order do |f| %>
+<div class="container">
+    <div class="row py-5 mt-4 align-items-center">
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+            <%= image_tag 'order.jpg', class: "img-fluid mb-3 d-none d-md-block" %>  
+            <h1>Place Order</h1>
         </div>
-        <br>
-        <div class="form-group">
-            <%= f.label :email, { class: "form-label" } %><br>
-            <%= f.email_field :email, class: "form-control", placeholder: "Enter email" %>
+        <div class="col-md-7 col-lg-6 ml-auto">
+            <form action="#">
+                <div class="row">
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.text_field :name, autofocus: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Full Name" %>
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-envelope text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control bg-white border-left-0 border-md", placeholder: "Email Address" %> 
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-phone-square text-muted"></i>
+                            </span>
+                        </div>
+                        <select id="countryCode" name="countryCode" style="max-width: 80px" class="custom-select form-control-sign_up bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
+                            <option value="">+92</option>
+                        </select>
+                        <%= f.number_field :contact, autofocus: true, class: "form-control bg-white border-md border-left-0 pl-3", placeholder: "Contact No" %>
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-black-tie text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.select :payment_type, ['Cash On Delivery', 'Debit Card'], {}, { class: "form-control custom-select bg-white border-left-0 border-md", id: "user_type" } %>
+                    </div>
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-flag text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.text_field :state, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "State" %>
+                    </div>
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-flag text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.text_field :city, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "City" %>
+                    </div>
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-road text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.number_field :postal_code, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "Postal Code" %>
+                    </div>
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-road text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.text_field :address, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "Address" %>
+                    </div>
+                    <div class="form-group-sign_up col-lg-12 mx-auto mb-0">
+                        <%= f.submit "Place Order" , { class: "btn btn-primary btn-block py-2 font-weight-bold" } %>
+                    </div>
+                </div>
+            </form>
         </div>
-        <br>
-        <div class="form-group">
-            <%= f.label :address, { class: "form-label" } %><br>
-            <%= f.text_area :address, class: "form-control", placeholder: "Enter shipping address" %>
-        </div>
-        <br>
-        <%= f.submit "Place Order", { class: "btn btn-primary form-control" } %>
-    </form>
+    </div>
 </div>
-<% end %>
+<% end %> 

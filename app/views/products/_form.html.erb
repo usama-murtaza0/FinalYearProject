@@ -1,36 +1,91 @@
 <%= form_for @product do |f| %>
-<div class="center">
-<form>
-  <fieldset>
-    <legend>Create a new Listing</legend>
-    <div class="form-group">
-      <%= f.label :title, { class: "form-label" } %><br>
-      <%= f.text_field :title, autofocus: true, class: "form-control", placeholder: "Enter Product title" %>
+<div class="container">
+    <div class="row py-5 mt-4 align-items-center">
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+            <%= image_tag 'v1.jpg', class: "img-fluid mb-3 d-none d-md-block" %>  
+            <h1>Create a new listing</h1>
+        </div>
+        <div class="col-md-7 col-lg-6 ml-auto">
+            <form action="#">
+                <div class="row">
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.text_field :title, autofocus: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Product Title" %>
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.text_field :description, autofocus: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Product Description" %>
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-envelope text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.number_field :price, autofocus: true, autocomplete: "email", class: "form-control bg-white border-left-0 border-md", placeholder: "Price" %> 
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-phone-square text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.select :category_id, options_from_collection_for_select(@categories, 'id', 'title'), {}, { class: "custom-select form-control-sign_up bg-white border-left-0 border-md h-100 font-weight-bold text-muted" } %>
+                    </div>
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-lock text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.number_field :quantity, class: "form-control bg-white border-left-0 border-md", placeholder: "Stock Available" %>
+                    </div>
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-lock text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.text_field :packing, class: "form-control bg-white border-left-0 border-md", placeholder: "Product Packing" %>
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-black-tie text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.number_field :sale, class: "form-control bg-white border-left-0 border-md", placeholder: "Enter sale% if any available" %>
+                    </div>
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-flag text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.text_field :size, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "Size" %>
+                    </div>
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.file_field :pictures, multiple: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Product Picture" %>
+                    </div>
+                    <div class="form-group-sign_up col-lg-12 mx-auto mb-0">
+                        <%= f.submit "Create Listing" , { class: "btn btn-primary btn-block py-2 font-weight-bold" } %>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <br>
-    <div class="form-group">
-      <%= f.label :price, { class: "form-label" } %><br>
-      <%= f.text_field :price, autofocus: true, class: "form-control", placeholder: "Enter product's price in rupees" %>
-    </div>
-    <br>
-    <div class="form-group">
-      <%= f.label :description, { class: "form-label" } %><br>
-      <%= f.text_area :description, autofocus: true, class: "form-control", placeholder: "Enter product Description" %>
-    </div>
-    <br>
-    <div class="form-group">
-      <%= f.label :quantity, { class: "form-label" } %><br>
-      <%= f.text_field :quantity, autofocus: true, class: "form-control", placeholder: "Stock Available" %>
-    </div>
-    <br>
-    <div class="form-group">
-      <%= f.label :picture, { class: "form-label" } %><br>
-      <%= f.file_field :picture, class: "form-control" %>
-    </div>
-    <br>
-    <br>
-    <%= f.submit "Create Listing" , { class: "btn btn-primary form-control" } %>
-  </fieldset>
-</form>
 </div>
-<% end %> 
+<% end %>
