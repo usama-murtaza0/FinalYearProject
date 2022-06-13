@@ -6,12 +6,11 @@
 //= require popper
 //= require bootstrap-sprockets
 
-require("@rails/ujs").start()
+require('jquery')
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 //Postscript
-require('jquery')
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
@@ -22,14 +21,3 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-window.onscroll = function() {myFunction()};
-var navbar = document.getElementById("navbar_top");
-var sticky = navbar.offsetTop;
-function myFunction() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky")
-  } else {
-    navbar.classList.remove("sticky");
-  }
-}

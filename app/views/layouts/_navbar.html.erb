@@ -2,44 +2,56 @@
   <div class="header">
     <div class="container-fluid">
       <div class="row" id="navbar_top">
-          <div class="col-xl-2 col-lg-4 col-md-4 col-sm-3 col logo_section">
-            <div class="full">
-              <div class="center-desk">
-                <div class="logo">
-                  <a href="index.html"><%=image_tag("logo.png") %></a>
-                </div>
+        <div class="col-xl-2 col-lg-4 col-md-4 col-sm-3 col logo_section">
+          <div class="full">
+            <div class="center-desk">
+              <div class="logo">
+                <a href="index.html"><%=image_tag("logo.png") %></a>
               </div>
             </div>
           </div>
-          <div class="col-xl-10 col-lg-8 col-md-8 col-sm-9">    
-            <div class="menu-area">
-              <div class="limit-box">
-                <nav class="main-menu" id="navbar_top">
-                  <ul class="menu-area-main">
-                    <li class="active"> <a href="<%= root_path %>">Home</a> </li>
-                    <li> <a href="<%= products_path %>">Shop</a> </li>
-                    <li> <a href="#vegetable">Vegetable</a> </li>
-                    <li>
-                      <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                      </form>
-                    </li>
-                    <li>         
-                      <% if current_user %>
-                        <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-navbar" %>
-                      <% else %>
-                        <%= link_to 'Sign In', user_session_path, class: "btn btn-navbar"  %>
-                      <% end %>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </div> 
-          </div>
+        </div>
+        <div class="col-xl-10 col-lg-8 col-md-8 col-sm-9">    
+          <div class="menu-area">
+            <div class="limit-box">
+              <nav class="main-menu" id="navbar_top"> 
+                <ul class="menu-area-main">
+                  <li class="active"> <a href="<%= root_path %>">Home</a> </li>
+                  <li> <a href="<%= products_path %>">Shop</a> </li>
+                  <li>
+                    <div class="dropdown show">
+                      <a class="dropdown-toggle" href ="#"role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                      </a>
+                      <div class="dropdown-content">
+                        <% @categories.each do |category| %>
+                          <a href="<%= products_category_path(category.id) %>"><%= category.title %></a>
+                        <% end %>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <%= form_tag products_search_path, method: 'get', class: 'navbar-form navbar-right' do %>
+                      <%= search_field_tag 'search_query', nil, class: 'form-control me-2', placeholder: 'Search'  %>
+                  </li>
+                  <li>
+                    <%= submit_tag "Search", class: 'btn btn-success', :name => nil %>
+                    <% end %>
+                  </li>
+                  <li>         
+                    <% if current_user %>
+                      <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-navbar" %>
+                    <% else %>
+                      <%= link_to 'Sign In', user_session_path, class: "btn btn-navbar"  %>
+                    <% end %>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div> 
         </div>
       </div>
     </div>
   </div>
 </div>
-<%= javascript_pack_tag 'application.js' %>
+</div>

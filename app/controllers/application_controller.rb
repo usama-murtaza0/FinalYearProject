@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 protect_from_forgery with: :exception
 
 before_action :current_cart, :check_user, :configure_permitted_parameters, if: :devise_controller?
+before_action :categories
 
   def after_sign_in_path_for(user)
     if current_user.user_type == "Admin"
@@ -11,6 +12,10 @@ before_action :current_cart, :check_user, :configure_permitted_parameters, if: :
     else
       user_path(current_user.id)
     end
+  end
+
+  def categories
+    @categories = Category.all
   end
 
   private
@@ -32,8 +37,7 @@ before_action :current_cart, :check_user, :configure_permitted_parameters, if: :
     if session[:cart_id] == nil
       @current_cart = Cart.create
       session[:cart_id] = @current_cart.id
-    end 
-
+    end
     @current_cart
   end
 

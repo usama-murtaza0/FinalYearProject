@@ -1,13 +1,17 @@
 require 'pry'
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:show, :edit, :update, :destroy]  
+  before_action :find_product, only: [:show, :edit, :update, :destroy]
+
   def index
-    @products = Product.all.where().order("created_at DESC")
+    @products = Product.all.order("created_at DESC")
   end
   
+  def search
+    @products = Product.where('title LIKE ?', "%#{params[:search_query]}%")
+  end
+
   def new
     @product = Product.new
-    @categories = Category.all
   end
   
   def create
@@ -21,7 +25,8 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(@product.user_id)
+    @category = Category.find(@product.category_id)
   end
 
   def edit
@@ -41,6 +46,7 @@ class ProductsController < ApplicationController
   end 
 
   private
+  
   def find_product
     @product = Product.find(params[:id])
   end

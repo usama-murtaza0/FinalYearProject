@@ -2,41 +2,46 @@
     <div class="container">
       <div class="row hidden-md-up">  
         <div class="card-single-show col-md-6">
-            <h3 class="card-header"><%= @product.title %></h3>
-            <div class="card-body">
-              <% if @product.sale? %>
-                <h5 class="card-title text-muted text-decoration-line-through"><%= @product.price %> Rs</h5>
-                <h5 class="card-title"><%= @product.price-(@product.price*@product.sale/100) %> Rs</h5>
-                <% @product.price = @product.price-(@product.price*@product.sale) %>
-              <% else %>
-                <h5 class="card-title"><%= @product.price %>Rs</h6>
-              <% end %>   
-            </div>
-            <% if @product.pictures.present? %>
-              <img src="<%= @product.pictures[0] %>" class="d-block user-select-none" width="100%" height="400" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"></img>
-              <img src="<%= @product.pictures[1] %>" class="d-block user-select-none" width="100%" height="400" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"></img>
-              <img src="<%= @product.pictures[2] %>" class="d-block user-select-none" width="100%" height="400" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"></img>
+          <h3 class="card-header"><%= @product.title %></h3>
+          <div class="card-body">
+            <% if @product.sale? %>
+              <h5 class="card-title text-muted text-decoration-line-through"><%= @product.price %> Rs</h5>
+              <h5 class="card-title"><%= @product.price-(@product.price*@product.sale/100) %> Rs</h5>
+              <% @product.price = @product.price-(@product.price*@product.sale) %>
             <% else %>
-              <%= image_tag "placeholder_product.png" , class: "d-block user-select-none" %>
+              <h5 class="card-title"><%= @product.price %>Rs</h6>
+            <% end %>   
+          </div>
+          <% if @product.pictures.present? %>
+            <% @product.pictures.each do |picture| %>
+              <%= image_tag picture.url, class: "d-block user-select-none" %>
             <% end %>
-          </div>  
-        </div> 
-          <div class="card-single-show col-md-6">
-            <div class="card-body">
-              <p class="card-text"><small><%= @product.description %></small></p>
-            </div>
-          </div>
-          <div class="card-single-show col-md-6">
-            <div class="card-body">Vendor's
-              <p class="card-text"><small>State:<%= @product.user.state %></small></p>
-              <p class="card-text"><small>City:<%= @product.user.city %></small></p>
-              <p class="card-text"><small>Address:<%= @product.user.address %></small></p>
-              <p class="card-text"><small>ZIP:<%= @product.user.postal_code %></small></p>
-            </div>
-          </div>
-          <%= button_to "Add to cart", line_items_path(:product_id => @product.id), { class: "btn btn btn-card-index" } %>
-          <br>
+          <% else %>
+            <%= image_tag "placeholder_product.png" , class: "d-block user-select-none" %>
+          <% end %>
+        </div>  
+      </div> 
+      <div class="card-single-show col-md-6">
+        <div class="card-body">
+          <p class="card-text"><small><%= @product.description %></small></p>
+        </div>
       </div>
-    </div> 
-  </div>
+      <% if @category %>
+        <div class="card-single-show col-md-6">
+          <div class="card-body">Category:
+            <p class="card-text"><small> <%= @category.title %></small></p>
+          </div>
+        </div>
+      <% end %>
+      <% if @user.state %>
+        <div class="card-single-show col-md-6">
+          <div class="card-body">Physical Store Address of Vendor
+            <p class="card-text"><small><%= @user.address %> <%= @user.postal_code %> <%= @user.city %> <%= @user.state %></small></p>
+          </div>
+        </div>
+      <% end %> 
+      <%= button_to "Add to cart", line_items_path(:product_id => @product.id), { class: "btn btn btn-card-index" } %>
+      <br>
+    </div>
+  </div> 
 </div>     

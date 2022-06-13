@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'users/index'
   
   get 'products/index'
+  get 'products/search'
   
   get 'carts/:id' => "carts#show", as: "cart"
   delete 'carts/:id' => "carts#destroy"
@@ -23,7 +24,12 @@ Rails.application.routes.draw do
   delete 'line_items/:id' => "line_items#destroy"
   get "home/index"  
 
-  resources :categories
+  resources :categories do
+    member do
+      get :products
+    end
+  end
+  
   resources :reviews
   resources :orders
   devise_for :users

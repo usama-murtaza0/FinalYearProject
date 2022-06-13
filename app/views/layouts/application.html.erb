@@ -12,9 +12,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
+    <%= stylesheet_link_tag 'application', 'https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', 'https://fonts/material-icon/css/material-design-iconic-font.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= stylesheet_link_tag 'animate.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'jquery-ui.css', media: 'all', 'data-turbolinks-track': 'reload' %>    
@@ -28,8 +30,7 @@
     <%= stylesheet_link_tag 'style.css', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'products', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
-    
-    <%= stylesheet_link_tag 'application', 'https://fonts/material-icon/css/material-design-iconic-font.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -44,6 +45,8 @@
     <span class="notice"><%= notice %></span>
     <span class="alert"><%= alert %></span>
 
-    <%= render 'layouts/footer' %>
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
   </body>
 </html>
