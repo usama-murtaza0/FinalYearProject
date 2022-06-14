@@ -40,7 +40,21 @@
           </div>
         </div>
       <% end %> 
+      <% if @reviews %>
+        <% @reviews.each do |review| %>
+          <div class="card-single-show col-md-6">
+            <div class="card-body">Rating
+              <p class="card-text"><small><%= review.rating %>/5</small></p>
+            </div>
+            <div class="card-body">Review: 
+              <%= review.body %>
+            </div>
+          </div>
+        <% end %>
+      <% end %> 
       <%= button_to "Add to cart", line_items_path(:product_id => @product.id), { class: "btn btn btn-card-index" } %>
+      <br>
+      <%= button_to "Add a Review", new_review_path(:product => @product.id), { class: "btn btn-card-index" } %>
       <br>
     </div>
   </div> 

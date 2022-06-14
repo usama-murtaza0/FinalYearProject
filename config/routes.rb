@@ -4,18 +4,18 @@ Rails.application.routes.draw do
   get 'orders/show'
   get 'orders/new'
   
-  get 'carts/show'
-  
   get 'users/index'
   
   get 'products/index'
   get 'products/search'
   
+  get 'carts/show'
   get 'carts/:id' => "carts#show", as: "cart"
   delete 'carts/:id' => "carts#destroy"
   
   get 'reviews/index'
   get 'reviews/show'
+  post 'reviews/new'
 
   post 'line_items/:id/add' => "line_items#add_quantity", as: "line_item_add"
   post 'line_items/:id/reduce' => "line_items#reduce_quantity", as: "line_item_reduce"
@@ -25,13 +25,15 @@ Rails.application.routes.draw do
   get "home/index"  
 
   resources :categories do
-    member do
+    member do 
       get :products
     end
   end
   
   resources :reviews
+
   resources :orders
+  
   devise_for :users
 
   resources :users do
@@ -44,7 +46,7 @@ Rails.application.routes.draw do
   end
 
   resources :products
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  #root to: "products#index"
+  
   root to: "home#index"  
+
 end

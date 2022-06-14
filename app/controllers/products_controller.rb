@@ -27,6 +27,7 @@ class ProductsController < ApplicationController
   def show
     @user = User.find(@product.user_id)
     @category = Category.find(@product.category_id)
+    @reviews = Review.where(product_id: @product.id)
   end
 
   def edit

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_03_162029) do
+ActiveRecord::Schema.define(version: 2022_06_13_160947) do
 
   create_table "carts", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2022_06_03_162029) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "rating"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
