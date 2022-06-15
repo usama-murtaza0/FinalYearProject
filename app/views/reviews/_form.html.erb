@@ -1,0 +1,42 @@
+<%= form_for @review do |f| %>
+<div class="container">
+    <div class="row py-5 mt-4 align-items-center">
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+            <%= image_tag 'review.png', class: "img-fluid mb-3 d-none d-md-block" %>  
+            <h1>Review a Product</h1>
+        </div>
+        <div class="col-md-7 col-lg-6 ml-auto">
+            <form action="#">
+                <div class="row">
+                    <div class="rating input-group col-lg-12 mb-4"> 
+                        <input type="radio" name="rating" value="5" id="5">
+                        <label for="5">☆</label> 
+                        <input type="radio" name="rating" value="4" id="4">
+                        <label for="4">☆</label> 
+                        <input type="radio" name="rating" value="3" id="3">
+                        <label for="3">☆</label> 
+                        <input type="radio" name="rating" value="2" id="2">
+                        <label for="2">☆</label> 
+                        <input type="radio" name="rating" value="1" id="1">
+                        <label for="1">☆</label>
+                    </div>
+
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        <%= f.text_field :body, autofocus: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Comments" %>
+                    </div>
+                    
+                    <%= f.hidden_field :product_id, :value => params[:product] %>
+                    <div class="form-group-sign_up col-lg-12 mx-auto mb-0">
+                        <%= f.submit "Submit Review" , { class: "btn btn-primary btn-block py-2 font-weight-bold" } %>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<% end %>

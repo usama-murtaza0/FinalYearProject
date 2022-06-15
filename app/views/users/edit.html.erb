@@ -1,0 +1,64 @@
+<div class="center">
+  <fieldset>
+  <legend>Edit User</legend>
+
+<%= form_for @user do |f| %>
+
+    <div class="form-group">
+      <%= f.label :Name, { class: "form-label" } %><br />
+      <%= f.text_field :user_name, autofocus: true, class: "form-control", placeholder: "Enter your Name" %>
+    </div>
+
+  <div class="form-group">
+      <%= f.label :email, { class: "form-label" } %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password, { class: "form-label" } %><i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+      <% if @minimum_password_length %>
+        <br />
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, { class: "form-label" } %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :current_password, { class: "form-label" } %><i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :picture, { class: "form-label" } %><br>
+      <%= f.file_field :picture, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :contact, { class: "form-label" } %><br>
+      <%= f.text_field :contact, autofocus: true, class: "form-control", placeholder: "Please enter in 03xxxxxxxxx format" %>
+    </div>
+    
+    <div class="form-group">
+        <%= f.label :user_type , { class: "form-label" } %><br />
+        <%= f.select :user_type, ['Customer', 'Vendor'], {}, { class: "form-control", id: "user_type" } %><br>
+        <div class="form-group">
+          <%= f.label :physical_store_address, { class: "form-label hidden" } %>
+          <%= f.text_field :physical_store_address, autofocus: true, class: "form-control hidden", placeholder: "Enter your Address" %>
+        </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update", { class: "btn btn-primary" } %>
+    </div>
+
+    <br />
+    <%= link_to "Back", :back, class: "btn btn-primary" %>
+</div>
+<% end %>
+
+<%= javascript_pack_tag 'user_js' %>

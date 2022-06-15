@@ -1,0 +1,7 @@
+<% if @user.deactivated %>
+    <%= button_to "Activate this user", activate_user_path(@user.id), { class: "btn btn-primary form-control" } %>
+    <br>
+<% else %>
+    <%= button_to "Deactivate this user", deactivate_user_path(@user.id), { class: "btn btn-primary form-control" } %>
+    <br>
+<% end %>

@@ -1,0 +1,7 @@
+<% if current_user.user_type == "Admin" %>
+    <%= link_to "Order history", orders_user_path(@user.id), { class: "btn btn-primary form-control" } %>
+    <br>
+    <%= link_to "Products listed by this user", products_user_path(@user.id), { class: "btn btn-primary form-control" } %>
+    <br>
+    <%= render'user_check' %>
+<% end %>

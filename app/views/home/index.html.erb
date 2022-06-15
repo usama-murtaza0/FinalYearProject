@@ -1,0 +1,48 @@
+<div class="header">
+    <section class="slider_section">
+      <div class="carousel-inner">
+          <div class="carousel-item active">
+              <div class="container-fluid padding_dd">
+                  <div class="carousel-caption">
+                      <div class="row">
+                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                              <div class="text-bg">
+                                  <span>Welcome To Authentic</span>
+                                  <h1>Organic Products Store</h1>
+                                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal </p>
+                                  <%= form_tag(products_search_path, method: 'get', class: 'Vegetable') do %>
+                                    <%= search_field_tag 'search_query', nil, class: 'Vegetable_fom', placeholder: 'Search'  %>
+                                    <%= button_tag "Search", class: 'Search_btn', :name => nil %>
+                                  <% end %>
+                                  <a href="#">Contact Us</a> <a href="<%= products_path %>">Visit Shop</a>
+                              </div>
+                          </div>
+                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                              <div class="images_box">
+                                  <figure><%=image_tag("img2.png") %></figure>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+</div>
+<div id="about" class="about">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+        <div class="about-box">
+          <h2>About us</h2>
+          <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages andIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many</p>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 padding_rl">
+        <div class="about-box_img">
+          <figure><%=image_tag("about.jpg")%></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
