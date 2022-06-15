@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_13_160947) do
+ActiveRecord::Schema.define(version: 2022_06_15_154449) do
 
   create_table "carts", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 2022_06_13_160947) do
     t.integer "postal_code"
     t.boolean "deactivated", default: false
     t.boolean "order_status", default: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

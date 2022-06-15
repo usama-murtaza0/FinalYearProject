@@ -6,9 +6,16 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :orders
 
+  geocoded_by :full_address
+  after_validation :geocode
+
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
   mount_uploader :picture, AvatarUploader
+
+  def full_address
+    [state, city, address].compact.join(',')
+  end
 
   def disabled?
     deactivated == false

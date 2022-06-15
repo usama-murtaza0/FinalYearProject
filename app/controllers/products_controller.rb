@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show
+  def show 
     @user = User.find(@product.user_id)
     @category = Category.find(@product.category_id)
     @reviews = Review.where(product_id: @product.id)
