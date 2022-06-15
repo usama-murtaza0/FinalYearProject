@@ -44,7 +44,18 @@
         <% @reviews.each do |review| %>
           <div class="card-single-show col-md-6">
             <div class="card-body">Rating
-              <p class="card-text"><small><%= review.rating %>/5</small></p>
+              <div class="disabled_rating input-group col-lg-12 mb-4"> 
+                <input type="radio" name="rating_<%= review.id %>" value="5" id="5" <%= review.rating == 5 ? 'checked="checked"' : ''  %> disabled="true">
+                <label for="5">☆</label> 
+                <input type="radio" name="rating_<%= review.id %>" value="4" id="4" <%= review.rating == 4 ? 'checked="checked"' : ''  %> disabled="true">
+                <label for="4">☆</label> 
+                <input type="radio" name="rating_<%= review.id %>" value="3" id="3" <%= review.rating == 3 ? 'checked="checked"' : ''  %> disabled="true">
+                <label for="3">☆</label> 
+                <input type="radio" name="rating_<%= review.id %>" value="2" id="2" <%= review.rating == 2 ? 'checked="checked"' : ''  %> disabled="true">
+                <label for="2">☆</label> 
+                <input type="radio" name="rating_<%= review.id %>" value="1" id="1" <%= review.rating == 1 ? 'checked="checked"' : ''  %> disabled="true">
+                <label for="1">☆</label>
+              </div>
             </div>
             <div class="card-body">Review: 
               <%= review.body %>
