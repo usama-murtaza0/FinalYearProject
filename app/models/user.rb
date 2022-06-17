@@ -14,7 +14,7 @@ class User < ApplicationRecord
   mount_uploader :picture, AvatarUploader
 
   def full_address
-    [state, city, address].compact.join(',')
+    [address, city, state].compact.join(',')
   end
 
   def disabled?
