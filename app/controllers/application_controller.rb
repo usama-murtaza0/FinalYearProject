@@ -6,6 +6,7 @@ before_action :categories
 
   def after_sign_in_path_for(user)
     if current_user.user_type == "Admin"
+      @suggestions = Suggestion.all
       users_path(@user)
     elsif current_user.user_type == "Customer"
       products_path

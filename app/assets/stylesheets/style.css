@@ -126,7 +126,7 @@
      padding: 0;
 }
  .form-control:focus {
-     border-color: #000000 !important;
+     border-color: #ccc !important;
      box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .25);
 }
  .navbar-form input {
@@ -874,12 +874,8 @@
      position: relative;
      border-bottom: solid #eee 1px;
 }
- .main-menu ul>li .sub-down li a::before {
-}
  .main-menu ul>li .sub-down li a:hover {
      color: #111111;
-}
- .main-menu ul>li .sub-down li a:hover::before {
 }
  .main-menu ul li:first-child {
      margin-left: 0;
@@ -966,7 +962,6 @@
 background: #0f052f;
 margin: 0 !important;
 padding: 30px 36px 30px 16px;
-float: right;
 margin-right: 110px !important;
 width: 24%;
 }
