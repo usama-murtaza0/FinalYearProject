@@ -38,13 +38,24 @@
                     <%= submit_tag "Search", class: 'btn btn-success', :name => nil %>
                     <% end %>
                   </li>
-                  <li>         
-                    <% if current_user %>
-                      <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-navbar" %>
-                    <% else %>
+                  <% if current_user %>
+                    <li>
+                      <div class="dropdown show">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+                        </a>
+                        <div class = "dropdown-content">
+                          <a class="dropdown-item" href="<%= user_path(current_user.id) %>">Visit Profile</a>
+                          <a class="dropdown-item" href="<%= edit_user_path(current_user.id) %>">Edit Profile</a>
+                          <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" }, class: "dropdown-item" %>
+                        </div>
+                      </div>
+                    </li>   
+                  <% else %>
+                    <li>
                       <%= link_to 'Sign In', user_session_path, class: "btn btn-navbar"  %>
-                    <% end %>
-                  </li>
+                    </li>
+                  <% end %>
                 </ul>
               </nav>
             </div>

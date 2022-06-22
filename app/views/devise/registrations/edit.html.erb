@@ -1,58 +1,148 @@
-<div class="center">
-  <fieldset>
-  <legend>Edit <%= resource_name.to_s.humanize %></legend>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="container">
+      <div class="row py-5 mt-4 align-items-center">
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+          <%= image_tag 'form_signup.svg', class: "img-fluid mb-3 d-none d-md-block" %>  
+          <h1>Edit your profile</h1>
+        </div>
+        <div class="col-md-7 col-lg-6 ml-auto">
+          <form action="#">
+            <div class="row">
+              <div class="input-group col-lg-12 mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-white px-4 border-md border-right-0">
+                    <i class="fa fa-user text-muted"></i>
+                  </span>
+                </div>
+                <div class="form-group">
+                  <%= f.text_field :user_name, autofocus: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Full Name" %>
+                </div>
+                <div class="input-group col-lg-12 mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                      <i class="fa fa-envelope text-muted"></i>
+                    </span>
+                  </div>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control bg-white border-left-0 border-md", placeholder: "Email Address" %> 
+                </div>
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                <% end %>
+                <div class="input-group col-lg-12 mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                      <i class="fa fa-phone-square text-muted"></i>
+                    </span>
+                  </div>
+                  <select id="countryCode" name="countryCode" style="max-width: 80px" class="custom-select form-control-sign_up bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
+                    <option value="">+92</option>
+                  </select>
+                  <%= f.number_field :contact, autofocus: true, class: "form-control bg-white border-md border-left-0 pl-3", placeholder: "Contact No" %>
+                </div>
+                <div class="input-group col-lg-6 mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                      <i class="fa fa-lock text-muted"></i>
+                    </span>
+                  </div>
+                  <%= f.password_field :password, autocomplete: "new-password", class: "form-control bg-white border-left-0 border-md", placeholder: "Password" %>
+                  <% if @minimum_password_length %>
+                    <br />
+                    <em><%= @minimum_password_length %> characters minimum</em>
+                  <% end %>
+                </div>
+                <div class="input-group col-lg-6 mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                      <i class="fa fa-lock text-muted"></i>
+                    </span>
+                  </div>
+                  <%= f.password_field :password_confirmation, autocomplete: "confirm-password", class: "form-control bg-white border-left-0 border-md", placeholder: "Confirm Password" %>
+                <div class="input-group col-lg-12 mb-4">
+                </div>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                      <i class="fa fa-lock text-muted"></i>
+                    </span>
+                  </div>
+                  <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control bg-white border-left-0 border-md", placeholder: "Current Password" %>
+                </div>
+                <div class="input-group col-lg-12 mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                      <i class="fa fa-black-tie text-muted"></i>
+                    </span>
+                  </div>
+                  <%= f.select :user_type, ['Customer', 'Vendor'], {}, { class: "form-control custom-select bg-white border-left-0 border-md", id: "user_type" } %>
+                </div>
+                <div class="input-group col-lg-6 mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                      <i class="fa fa-flag text-muted"></i>
+                    </span>
+                  </div>
+                  <%= f.text_field :state, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "State" %>
+                </div>
+                <div class="input-group col-lg-6 mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                      <i class="fa fa-flag text-muted"></i>
+                    </span>
+                  </div>
+                  <%= f.text_field :city, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "City" %>
+                </div>
+                <div class="input-group col-lg-6 mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                      <i class="fa fa-road text-muted"></i>
+                    </span>
+                  </div>
+                  <%= f.number_field :postal_code, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "Postal Code" %>
+                </div>
+                <div class="input-group col-lg-6 mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                      <i class="fa fa-road text-muted"></i>
+                    </span>
+                  </div>
+                  <%= f.text_field :address, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "Address" %>
+                </div>
+                <div class="input-group col-lg-12 mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                      <i class="fa fa-user text-muted"></i>
+                    </span>
+                  </div>
+                  <%= f.file_field :picture, class: "form-control bg-white border-left-0 border-md", placeholder: "Profile Picture" %>
+                </div>  
+                <div class="form-group">
+                  <%= f.label :picture, { class: "form-label" } %><br>
+                  <%= f.file_field :picture, class: "form-control" %>
+                </div>
 
-    <div class="form-group">
-      <%= f.label :Name, { class: "form-label" } %><br />
-      <%= f.text_field :user_name, autofocus: true, class: "form-control", placeholder: "Enter your Name" %>
-    </div>
+                <div class="form-group">
+                  <%= f.label :contact, { class: "form-label" } %><br>
+                  <%= f.text_field :contact, autofocus: true, class: "form-control", placeholder: "Please enter in 03xxxxxxxxx format" %>
+                </div>
+                
+                <div class="form-group-sign_up col-lg-12 mx-auto mb-0">
+                  <%= f.submit "Update your account" , { class: "btn btn-primary btn-block py-2 font-weight-bold" } %>
+                </div>
 
-  <div class="form-group">
-      <%= f.label :email, { class: "form-label" } %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-    </div>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
-    <div class="form-group">
-      <%= f.label :password, { class: "form-label" } %><i>(leave blank if you don't want to change it)</i><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-      <% if @minimum_password_length %>
-        <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :password_confirmation, { class: "form-label" } %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :current_password, { class: "form-label" } %><i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :picture, { class: "form-label" } %><br>
-      <%= f.file_field :picture, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :contact, { class: "form-label" } %><br>
-      <%= f.text_field :contact, autofocus: true, class: "form-control", placeholder: "Please enter in 03xxxxxxxxx format" %>
-    </div>
-    
-    <div class="actions">
-      <%= f.submit "Update", { class: "btn btn-primary" } %>
-    </div>
-
-    <br />
-    <%= link_to "Back", :back, class: "btn btn-primary" %>
-</div>
-<% end %>
+                <div class="form-group-sign_up col-lg-12 mx-auto">
+                  <a href="<%= :back %>" class="btn btn-primary btn-block py-2 btn-facebook">
+                    <i class="fa fa-facebook-f mr-2"></i>
+                    <span class="font-weight-bold">Go back</span>
+                  </a>
+                </div>
+              </div>
+              </form>
+              </div>
+            </div>
+          </div>       
+          <br />
+          <%= link_to "Back", :back, class: "btn btn-primary" %>
+        </div>
+<% end %>                 
+      

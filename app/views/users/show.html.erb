@@ -1,45 +1,76 @@
-<div class="py-3">
-    <div class="container">
-        <div class="row hidden-md-up">
-            <div class="card mb-3">
-                <h3 class="card-header"><%= @user.user_name %></h3>
-                <div class="card-body">
-                    <h5 class="card-title"><%= @user.email %></h5>
+<section class="vh-100" style="background-color: #f4f5f7;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 mb-4 mb-lg-0">
+                <div class="card mb-3" style="border-radius: .5rem;">
+                    <div class="row g-0">
+                        <div class="col-md-4 gradient-custom text-center text-white" style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                            <% if @user.picture.present? %>
+                                <img src="<%= @user.picture %>" class="img-fluid my-5" style="width: 200px;"/>
+                            <% else %>
+                                <%= image_tag "placeholder_user.png" , class: "img-fluid my-5" %>
+                            <% end %>
+                            <h5><%= @user.user_name %></h5>
+                            <a href = <%=edit_user_path(@user.id) %> >
+                                <h6>Edit your profile</h6>
+                                <i class="fa fa-edit mb-5"></i>
+                            </a>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body p-4">
+                                <h6>Information</h6>
+                                <h6>User Type: <%= @user.user_type %></h6>
+                                <hr class="mt-0 mb-4">
+                                <div class="row pt-1">
+                                    <div class="col-6 mb-3">
+                                        <h6>Email</h6>
+                                        <p><%= @user.email %></p>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <h6>Contact No</h6>
+                                        <p>+92 <%= @user.contact %></p>
+                                    </div>
+                                </div>
+                                <hr class="mt-0 mb-4">
+                                <div class="row pt-1">
+                                    <div class="col-6 mb-3">
+                                        <h6>Address</h6>
+                                        <p><%= @user.address %> <%= @user.postal_code %> <%= @user.city %> <%= @user.state %></p>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <h6>Products</h6>
+                                        <% if current_user.user_type == "Admin" %>
+                                            <p>
+                                                <a href = <%= products_user_path(@user.id) %> >
+                                                    <h6>Products Listed by this user</h6>
+                                                </a>
+                                            </p>
+                                        <% else %>
+                                            <p>
+                                                <a href = <%= products_user_path(@user.id) %> >
+                                                    <h6>Your listed products</h6>
+                                                </a>
+                                            </p>
+                                        <% end %>
+                                    </div>
+                                </div>
+                                <% if current_user.user_type == "Admin" %>
+                                    <a href = <%= products_user_path(@user.id) %> >
+                                        <h6>Products Listed by this user</h6>
+                                    </a>
+                                <% else %>
+                                    <a href = <%= new_product_path %> >
+                                        <h6>Create a new listing  <i class="fa fa-plus" aria-hidden="true"></i></h6>
+                                    </a>
+                                    <a href = <%= orders_user_path(@user.id) %> >
+                                        <h6>Order history  <i class="fas fa-history" aria-hidden="true"></i></h6>
+                                    </a>                
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <% if @user.picture.present? %>
-                    <img src="<%= @user.picture %>" class="placeholder-single-show-img" width="100%" height="400" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"></img>
-                <% else %>
-                    <%= image_tag "placeholder_user.png" , class: "placeholder-single-show-img" %>
-                <% end %>
-                <div class="card-body">
-                    <p class="card-text"><small><%= @user.city %></small></p>
-                </div>
-                <div class="card-body">
-                    <p class="card-text"><small><%= @user.postal_code %></small></p>
-                </div>
-                <div class="card-body">
-                    <p class="card-text"><small><%= @user.state %></small></p>
-                </div>
-                <div class="card-body">
-                    <p class="card-text"><small><%= @user.address %></small></p>
-                </div>
-                <% if current_user.user_type == "Admin" %>
-                    <%= link_to "Order history", orders_user_path(@user.id), { class: "btn btn-primary form-control" } %>
-                    <br>
-                    <%= link_to "Products listed by this user", products_user_path(@user.id), { class: "btn btn-primary form-control" } %>
-                    <br>
-                    <%= render'user_check' %>
-                <% else %>
-                    <%= link_to "Edit your profile", edit_user_path(@user.id), { class: "btn btn-primary form-control" } %>
-                    <br>
-                    <%= link_to "Create a new listing", new_product_path, { class: "btn btn-primary form-control" } %>
-                    <br>
-                    <%= link_to "Preiously listed Products listed by you", products_user_path(@user.id), { class: "btn btn-primary form-control" } %>
-                    <br>
-                    <%= link_to "Order history", orders_user_path(@user.id), { class: "btn btn-primary form-control" } %>
-                <% end %>
             </div>
         </div>
-    <div>
-</div>
-</div>
+    </div>
+</section>

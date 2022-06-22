@@ -1,4 +1,3 @@
-require 'pry'
 class ReviewsController < ApplicationController
   before_action :find_review, only: [:show, :edit, :update, :destroy]
   
