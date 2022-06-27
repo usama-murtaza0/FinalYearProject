@@ -17,57 +17,104 @@
       infowindow.open(map, marker);
   }
 </script>
-
-<div class="py-3">
-    <div class="container">
-      <div class="row hidden-md-up">  
-        <div class="card-single-show col-md-6">
-          <h3 class="card-header"><%= @product.title %></h3>
-          <div class="card-body">
+<div class ="py-3">
+	<div class="container">
+		<div class="card">
+			<div class="container-fliud">
+				<div class="wrapper row">
+					<div class="preview col-md-6">			
+						<div class="preview-pic tab-content">
+						  <div class="tab-pane active" id="pic-1"><img src="<%= @product.pictures[0] %>" /></div>
+            </div>
+						<ul class="preview-thumbnail nav nav-tabs">
+              <% @product.pictures.each do |picture| %>
+                <li><a data-toggle="tab"><img src="<%= picture.url %>" /></a></li>
+              <% end %>
+						</ul>
+					</div>
+					<div class="details col-md-3">
+						<h3 class="product-title"><%= @product.title %></h3>
+						<p class="product-description"><%= @product.description %></p>
             <% if @product.sale? %>
-              <h5 class="card-title text-muted text-decoration-line-through"><%= @product.price %> Rs</h5>
-              <h5 class="card-title"><%= @product.price-(@product.price*@product.sale/100) %> Rs</h5>
-              <% @product.price = @product.price-(@product.price*@product.sale) %>
+						  <h4 class="price">Price: <span class="price text-decoration-line-through"><%= @product.price %> Rs</span></h4>
+					  	<h4 class="price">Current Price: <span><%= @product.price-(@product.price*@product.sale/100) %> Rs</span></h4>
             <% else %>
-              <h5 class="card-title"><%= @product.price %>Rs</h6>
-            <% end %>   
-          </div>
-          <% if @product.pictures.present? %>
-            <% @product.pictures.each do |picture| %>
-              <%= image_tag picture.url, class: "d-block user-select-none" %>
+              <h4 class="price">Price: <span><%= @product.price %> Rs</span></h4>
             <% end %>
-          <% else %>
-            <%= image_tag "placeholder_product.png" , class: "d-block user-select-none" %>
-          <% end %>
-        </div>  
-      </div> 
-      <div class="card-single-show col-md-6">
-        <div class="card-body">
-          <p class="card-text"><small><%= @product.description %></small></p>
+            <h5 class="sizes">Category:
+							<span class="size" data -toggle="tooltip" title="small"><%= @category.title %></span>
+						</h5>
+            <h5 class="sizes">Size:
+              <% case @product.size %>
+                <% when "Small" %>
+                  <span class="size" data-toggle="tooltip" title="small">S</span>
+                <% when "Medium" %>
+                  <span class="size" data-toggle="tooltip" title="medium">M</span>
+                <% when "Large" %>
+                  <span class="size" data-toggle="tooltip" title="large">L</span>
+                <% when "Extra Large"%>
+                  <span class="size" data-toggle="tooltip" title="xtra large">XL</span>
+                <% else %>
+                  <h6>No sizes given for this product</h6>
+              <% end %>
+            </h5>
+						<h5 class="colors">Packing:
+							<span class="size" data-toggle="tooltip" title="small"><%= @product.packing %></span>
+						</h5>
+						<div class="action">
+            <!--
+              <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+							<button class="like btn btn-default" type="button">add review</button>
+            -->
+              <div style="display:inline-block;">
+                <%= button_to "Add to cart", line_items_path(:product_id => @product.id), { class: "add-to-cart btn btn-default" } %>
+                <%= button_to "Add a Review", new_review_path(:product => @product.id), { class: "like btn btn-default" } %>
+              </div>
+            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="py-3">
+  <div class="container">
+    <div class="card">
+      <div class="container-fliud">
+        <div class="wrapper row">
+          <div class="preview">
+            <div class="row">
+              <div class="col-md-4">
+                <h3 style="padding-left: 10px; padding-top: 10px;">Listed by: <span class="size" data -toggle="tooltip" title="small"><%= @user.user_name %></span></h3>
+              </div>
+              <div class="col-md-4">  
+                <h4 style="padding-top: 10px;">Email: <span class="size" data -toggle="tooltip" title="small"><%= @user.email %></span></h4>
+              </div>
+              <div class="col-md-3">  
+                <h4 style="10px; padding-top: 10px;">Contact No: <span class="size" data -toggle="tooltip" title="small">+92 <%= @user.contact %></span></h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h3 style="padding-left: 10px; pading-top: 10px;">Physical Store Address of Vendor: </h3>
+              </div>
+              <div class="col-md-4">
+                <%= @user.address %> <%= @user.postal_code %> <%= @user.city %> <%= @user.state %> 
+              </div>
+            </div>
+            <div id="map" style="width:98%; height:400px;"></div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwigc-J6Bax4svQkMvtTN3lyzmtzgIhUc&callback=setMarkerOnMap"></script>
+          </div>    
         </div>
       </div>
-      <% if @category %>
-        <div class="card-single-show col-md-6">
-          <div class="card-body">Category:
-            <p class="card-text"><small> <%= @category.title %></small></p>
-          </div>
-        </div>
-      <% end %>
-      <% if @user.state %>
-        <div class="card-single-show col-md-6">
-          <div class="card-body">Listed by: <%= @user.user_name %>
-            <br>
-            Email: <%= @user.email %>
-          </div>
-          <div class="card-body">Physical Store Address of Vendor
-            <p class="card-text"><small><%= @user.address %> <%= @user.postal_code %> <%= @user.city %> <%= @user.state %></small></p>
-          </div>
-          <div id="map" style="width:100%;height:400px;"></div>
-          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwigc-J6Bax4svQkMvtTN3lyzmtzgIhUc&callback=setMarkerOnMap"></script>
-        </div>
-      <% end %> 
-      <% if @reviews %>
-        <% @reviews.each do |review| %>
+    </div>
+  </div> 
+</div>
+<% if @reviews %>
+  <% @reviews.each do |review| %>
+    <div class="py-3">
+      <div class="container">
+        <div class="row hidden-md-up">
           <div class="card-single-show col-md-6">
             <div class="card-body">Rating
               <div class="disabled_rating input-group col-lg-12 mb-4"> 
@@ -87,12 +134,8 @@
               <%= review.body %>
             </div>
           </div>
-        <% end %>
-      <% end %> 
-      <%= button_to "Add to cart", line_items_path(:product_id => @product.id), { class: "btn btn btn-card-index" } %>
-      <br>
-      <%= button_to "Add a Review", new_review_path(:product => @product.id), { class: "btn btn-card-index" } %>
-      <br>
+        </div>
+      </div>
     </div>
-  </div> 
-</div>
+  <% end %>
+<% end %>
