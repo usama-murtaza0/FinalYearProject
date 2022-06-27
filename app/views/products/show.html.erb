@@ -32,14 +32,14 @@
               <% end %>
 						</ul>
 					</div>
-					<div class="details col-md-3">
+					<div class="details col-md-6">
 						<h3 class="product-title"><%= @product.title %></h3>
 						<p class="product-description"><%= @product.description %></p>
             <% if @product.sale? %>
-						  <h4 class="price">Price: <span class="price text-decoration-line-through"><%= @product.price %> Rs</span></h4>
-					  	<h4 class="price">Current Price: <span><%= @product.price-(@product.price*@product.sale/100) %> Rs</span></h4>
+						  <h4 class="price">Price: <span class="size text-decoration-line-through"><%= @product.price %> Rs</span></h4>
+					  	<h4 class="price">Current Price: <span class="size"> <%= @product.price-(@product.price*@product.sale/100) %> Rs</span></h4>
             <% else %>
-              <h4 class="price">Price: <span><%= @product.price %> Rs</span></h4>
+              <h4 class="price">Price: <span class="size"><%= @product.price %> Rs</span></h4>
             <% end %>
             <h5 class="sizes">Category:
 							<span class="size" data -toggle="tooltip" title="small"><%= @category.title %></span>
@@ -66,9 +66,9 @@
               <button class="add-to-cart btn btn-default" type="button">add to cart</button>
 							<button class="like btn btn-default" type="button">add review</button>
             -->
-              <div style="display:inline-block;">
-                <%= button_to "Add to cart", line_items_path(:product_id => @product.id), { class: "add-to-cart btn btn-default" } %>
-                <%= button_to "Add a Review", new_review_path(:product => @product.id), { class: "like btn btn-default" } %>
+              <div style="display: inline-block;">
+                <%= link_to "Add to cart", line_items_path(:product_id => @product.id), method: :post, class: "add-to-cart btn btn-default" %>
+                <%= link_to "Add a Review", new_review_path(:product => @product.id), method: :post, class: "like btn btn-default" %>
               </div>
             </div>
 					</div>
