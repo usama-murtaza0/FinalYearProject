@@ -24,7 +24,9 @@
 				<div class="wrapper row">
 					<div class="preview col-md-6">			
 						<div class="preview-pic tab-content">
-						  <div class="tab-pane active" id="pic-1"><img src="<%= @product.pictures[0] %>" /></div>
+						  <div class="tab-pane active" id="pic-1">
+                <img src="<%= @product.pictures.present? ? @product.pictures[0] : image_url('placeholder_product.png') %>" />
+              </div>
             </div>
 						<ul class="preview-thumbnail nav nav-tabs">
               <% @product.pictures.each do |picture| %>
@@ -35,40 +37,73 @@
 					<div class="details col-md-6">
 						<h3 class="product-title"><%= @product.title %></h3>
 						<p class="product-description"><%= @product.description %></p>
-            <% if @product.sale? %>
-						  <h4 class="price">Price: <span class="size text-decoration-line-through"><%= @product.price %> Rs</span></h4>
-					  	<h4 class="price">Current Price: <span class="size"> <%= @product.price-(@product.price*@product.sale/100) %> Rs</span></h4>
-            <% else %>
-              <h4 class="price">Price: <span class="size"><%= @product.price %> Rs</span></h4>
-            <% end %>
-            <h5 class="sizes">Category:
-							<span class="size" data -toggle="tooltip" title="small"><%= @category.title %></span>
-						</h5>
-            <h5 class="sizes">Size:
-              <% case @product.size %>
-                <% when "Small" %>
-                  <span class="size" data-toggle="tooltip" title="small">S</span>
-                <% when "Medium" %>
-                  <span class="size" data-toggle="tooltip" title="medium">M</span>
-                <% when "Large" %>
-                  <span class="size" data-toggle="tooltip" title="large">L</span>
-                <% when "Extra Large"%>
-                  <span class="size" data-toggle="tooltip" title="xtra large">XL</span>
+            <table class ="table table-borderless">
+              <tbody>
+                <% if @product.sale? %>
+                <tr>
+                  <th scope="row">
+                    <h4 class="price">Price: 
+                  </th>
+                  <td><span class="size text-decoration-line-through"><%= @product.price %> Rs</span></h4></td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <h4 class="price">Current Price: 
+                  </th>
+                  <td><span class="size"> <%= @product.price-(@product.price*@product.sale/100) %> Rs</span></h4></td>
+                </tr>
                 <% else %>
-                  <h6>No sizes given for this product</h6>
-              <% end %>
-            </h5>
-						<h5 class="colors">Packing:
-							<span class="size" data-toggle="tooltip" title="small"><%= @product.packing %></span>
-						</h5>
+                <tr>
+                  <th scope="row">
+                    <h4 class="price">Price: 
+                  </th>
+                  <td><span class="size"><%= @product.price %> Rs</span></h4></td>
+                </tr>
+                <% end %>
+                <tr>
+                  <th scope="row">
+                    <h5 class="sizes">Category: 
+                  </th>
+                  <td><span class="size" data -toggle="tooltip" title="small"><%= @category.title %></span></h5></td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <h5 class="sizes">Size: 
+                  </th>
+                  <% case @product.size %>
+                    <% when "Small" %>
+                    <td><span class="size" data-toggle="tooltip" title="small">S</span></td>
+                    <% when "Medium" %>
+                    <td><span class="size" data-toggle="tooltip" title="medium">M</span></td>
+                    <% when "Large" %>
+                    <td><span class="size" data-toggle="tooltip" title="large">L</span></td>
+                    <% when "Extra Large"%>
+                    <td><span class="size" data-toggle="tooltip" title="xtra large">XL</span></td>
+                    </h5>
+                    <% else %>
+                    <td><h6>No sizes given for this product</h6></td>
+                  <% end %>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <h5 class="colors">Packing: 
+                  </th>
+                  <td><span class="size" data-toggle="tooltip" title="small"><%= @product.packing %></span></h5></td>
+                </tr>
+              </tbody>
+            </table>
 						<div class="action">
-            <!--
-              <button class="add-to-cart btn btn-default" type="button">add to cart</button>
-							<button class="like btn btn-default" type="button">add review</button>
-            -->
               <div style="display: inline-block;">
-                <%= link_to "Add to cart", line_items_path(:product_id => @product.id), method: :post, class: "add-to-cart btn btn-default" %>
-                <%= link_to "Add a Review", new_review_path(:product => @product.id), method: :post, class: "like btn btn-default" %>
+                <% if @product.user_id == current_user.id %>
+                  <%= link_to "Edit Listing", edit_product_path(@product.id), class: "add-to-cart btn btn-default" %>
+                <% end %>
+                <% unless @product.user_id == current_user.id %>
+                  <%= link_to "Add to cart", line_items_path(:product_id => @product.id), method: :post, class: "add-to-cart btn btn-default" %>
+                <% end %>
+                <% if @product.user_id == current_user.id %>
+                  <% elsif @eligible_for_review == true %>   
+                    <%= link_to "Add a Review", new_review_path(:product_id => @product.id), class: "like btn btn-default" %>
+                <% end %>
               </div>
             </div>
 					</div>

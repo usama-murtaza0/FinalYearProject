@@ -2,7 +2,11 @@
 <div class="container">
     <div class="row py-5 mt-4 align-items-center">
         <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
-            <%= image_tag 'review.png', class: "img-fluid mb-3 d-none d-md-block" %>  
+            <% if @product.pictures.present? %>
+                <img src="<%= @product.pictures[0] %>" class="img-fluid mb-3 d-none d-md-block"/>
+            <% else %>
+                <%= image_tag 'review.png', class: "img-fluid mb-3 d-none d-md-block" %>  
+            <% end %>
             <h1>Review a Product</h1>
         </div>
         <div class="col-md-7 col-lg-6 ml-auto">
@@ -31,9 +35,11 @@
                     </div>
                     
                     <%= f.hidden_field :product_id, :value => params[:product] %>
-                    <div class="form-group-sign_up col-lg-12 mx-auto mb-0">
-                        <%= f.submit "Submit Review" , { class: "btn btn-primary btn-block py-2 font-weight-bold" } %>
-                    </div>
+                    <% if @eligible_for_review %>
+                        <div class="form-group-sign_up col-lg-12 mx-auto mb-0">
+                            <%= f.submit "Submit Review" , { class: "btn btn-primary btn-block py-2 font-weight-bold" } %>
+                        </div>
+                    <% end %>
                 </div>
             </form>
         </div>

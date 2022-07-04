@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 protect_from_forgery with: :exception
 
 before_action :current_cart, :check_user, :configure_permitted_parameters, if: :devise_controller?
-before_action :categories
+before_action :categories, :set_cart
 
   def after_sign_in_path_for(user)
     if current_user.user_type == "Admin"
@@ -15,8 +15,12 @@ before_action :categories
     end
   end
 
+  def set_cart
+    @current_cart ||= Cart.find_or_create_by(user_id: current_user.id)
+  end
+
   def categories
-    @categories = Category.all
+    @categories ||= Category.all
   end
 
   private

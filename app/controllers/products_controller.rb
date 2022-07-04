@@ -1,5 +1,7 @@
 require 'pry'
 class ProductsController < ApplicationController
+  include Reviewable
+
   before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -28,7 +30,8 @@ class ProductsController < ApplicationController
     @user = User.find(@product.user_id)
     @category = Category.find(@product.category_id)
     @reviews = Review.where(product_id: @product.id)
-  end
+    @eligible_for_review = eligible_for_review?(@product.id) 
+  end 
 
   def edit
   end

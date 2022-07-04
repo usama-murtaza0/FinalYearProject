@@ -31,7 +31,7 @@
                     </div>
                   </li>
                   <li>
-                    <%= form_tag products_search_path, method: 'get', class: 'navbar-form navbar-right' do %>
+                    <%= form_tag search_products_path, method: 'get', class: 'navbar-form navbar-right' do %>
                       <%= search_field_tag 'search_query', nil, class: 'form-control me-2', placeholder: 'Search'  %>
                   </li>
                   <li>
@@ -39,15 +39,22 @@
                     <% end %>
                   </li>
                   <% if current_user %>
+                    <% if current_user.user_type == "Vendor" %>
+                      <li> <a href="<%= new_product_path %>">Create Listing</a> </li>
+                    <% end %>
                     <li>
                       <div class="dropdown show">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <img src="<%= current_user.picture %>" width="40" height="40" class="rounded-circle">
+                          <% if current_user.picture.present? %>
+                            <img src="<%= current_user.picture %>" width="40" height="40" class="rounded-circle">
+                          <% else %>
+                            <%= image_tag "placeholder_user.png", style: 'height:40px;width:40px;' , class: "rounded-circle" %>
+                          <% end %>
                         </a>
-                        <div class = "dropdown-content">
-                          <a class="dropdown-item" href="<%= user_path(current_user.id) %>">Visit Profile</a>
-                          <a class="dropdown-item" href="<%= edit_user_path(current_user.id) %>">Edit Profile</a>
-                          <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" }, class: "dropdown-item" %>
+                        <div class ="dropdown-content">
+                          <a style ="text-align:left" href="<%= user_path(current_user.id) %>">Visit Profile</a>
+                          <a style ="text-align:left" href="<%= edit_user_path(current_user.id) %>">Edit Profile</a>
+                          <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" }, style: 'text-align:left;' %>
                         </div>
                       </div>
                     </li>   

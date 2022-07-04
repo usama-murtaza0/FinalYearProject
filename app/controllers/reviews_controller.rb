@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  include Reviewable
+  
   before_action :find_review, only: [:show, :edit, :update, :destroy]
   
   def index
@@ -6,6 +8,8 @@ class ReviewsController < ApplicationController
   end
 
   def new
+    @eligible_for_review = eligible_for_review?(params[:product_id])
+    @product = Product.find(params[:product_id])
     @review = Review.new
   end
 

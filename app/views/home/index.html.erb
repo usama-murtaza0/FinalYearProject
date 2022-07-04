@@ -10,7 +10,7 @@
                                   <span>Welcome To Authentic</span>
                                   <h1>Organic Products Store</h1>
                                   <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal </p>
-                                  <%= form_tag(products_search_path, method: 'get', class: 'Vegetable') do %>
+                                  <%= form_tag(search_products_path, method: 'get', class: 'Vegetable') do %>
                                     <%= search_field_tag 'search_query', nil, class: 'Vegetable_fom', placeholder: 'Search'  %>
                                     <%= button_tag "Search", class: 'Search_btn', :name => nil %>
                                   <% end %>

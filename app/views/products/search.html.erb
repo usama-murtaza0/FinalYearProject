@@ -1,8 +1,8 @@
-<div class="text-image-body">
-    <%=image_tag("banner_background.jpg") %>
-    <div class="text-image">Here is what you searched for</div>
-</div>
-<% if @products %>
+<% if @products.present? %>
+    <div class="text-image-body">
+        <%=image_tag("banner_background.jpg") %>
+        <div class="text-image">Here is what you searched for</div>
+    </div>
     <div class="py-5-index">
         <div class="container">
             <div class="row hidden-md-up">  
@@ -51,6 +51,15 @@
         </div>
     </div>
 <% else %>
-    <h2> no products found </h2>
+    <div id="notfound">
+		<div class="notfound">
+			<div class="notfound-404">
+				<h1>404</h1>
+			</div>
+			<h2>Oops! This Page Could Not Be Found</h2>
+			<p>Sorry but there are no products matching your search</p>
+			<a href="<%= root_path %>">Go To Homepage</a>
+		</div>
+	</div>
 <% end %> 
 

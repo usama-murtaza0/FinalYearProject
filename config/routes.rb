@@ -1,21 +1,9 @@
 Rails.application.routes.draw do
-
-  get 'orders/index'
-  get 'orders/show'
-  get 'orders/new'
-  
-  get 'users/index'
-  
-  get 'products/index'
-  get 'products/search'
   
   get 'carts/show'
   get 'carts/:id' => "carts#show", as: "cart"
   delete 'carts/:id' => "carts#destroy"
   
-  get 'reviews/index'
-  get 'reviews/show'
-  post 'reviews/new'
 
   post 'line_items/:id/add' => "line_items#add_quantity", as: "line_item_add"
   post 'line_items/:id/reduce' => "line_items#reduce_quantity", as: "line_item_reduce"
@@ -45,7 +33,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :products
+  resources :products do
+    collection do
+      get :search
+    end
+  end
   
   root to: "home#index"  
 

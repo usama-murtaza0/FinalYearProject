@@ -5,7 +5,9 @@ class User < ApplicationRecord
   has_many :products
   has_many :reviews
   has_many :orders
+  has_one :cart
 
+  validates_uniqueness_of :contact
   geocoded_by :full_address
   after_validation :geocode
 

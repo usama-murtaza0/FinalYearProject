@@ -2,7 +2,7 @@
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-lg-9 mb-4 mb-lg-0">
-                <div class="card mb-3" style="border-radius: .5rem;">
+                <div class="card_user mb-3" style="border-radius: .5rem;">
                     <div class="row g-0">
                         <div class="col-md-4 gradient-custom text-center text-white" style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                             <% if @user.picture.present? %>
@@ -38,19 +38,27 @@
                                         <p><%= @user.address %> <%= @user.postal_code %> <%= @user.city %> <%= @user.state %></p>
                                     </div>
                                     <div class="col-6 mb-3">
-                                        <h6>Products</h6>
                                         <% if current_user.user_type == "Admin" %>
-                                            <p>
-                                                <a href = <%= products_user_path(@user.id) %> >
-                                                    <h6>Products Listed by this user</h6>
-                                                </a>
-                                            </p>
-                                        <% else %>
-                                            <p>
-                                                <a href = <%= products_user_path(@user.id) %> >
-                                                    <h6>Your listed products</h6>
-                                                </a>
-                                            </p>
+                                            <h6>Products</h6>
+                                                <p>
+                                                    <a href = <%= products_user_path(@user.id) %> >
+                                                        <h6>Products Listed by this user</h6>
+                                                    </a>
+                                                </p>
+                                            <% elsif current_user.user_type =="Vendor" %>
+                                                <h6>Products</h6>
+                                                    <p>
+                                                        <a href = <%= products_user_path(@user.id) %> >
+                                                            <h6>Your listed products</h6>
+                                                        </a>
+                                                    </p>
+                                            <% else %>
+                                                <h6>Orders</h6>
+                                                <p>
+                                                    <a href = <%= products_user_path(@user.id) %> >
+                                                        <h6>Order History</h6>
+                                                    </a>
+                                                </p>
                                         <% end %>
                                     </div>
                                 </div>
@@ -58,13 +66,13 @@
                                     <a href = <%= products_user_path(@user.id) %> >
                                         <h6>Products Listed by this user</h6>
                                     </a>
-                                <% else %>
-                                    <a href = <%= new_product_path %> >
-                                        <h6>Create a new listing  <i class="fa fa-plus" aria-hidden="true"></i></h6>
-                                    </a>
-                                    <a href = <%= orders_user_path(@user.id) %> >
-                                        <h6>Order history  <i class="fas fa-history" aria-hidden="true"></i></h6>
-                                    </a>                
+                                    <% elsif current_user.user_type == "Vendor" %>
+                                        <a href = <%= new_product_path %> >
+                                            <h6>Create a new listing  <i class="fa fa-plus" aria-hidden="true"></i></h6>
+                                        </a>
+                                        <a href = <%= orders_user_path(@user.id) %> >
+                                            <h6>Order history  <i class="fas fa-history" aria-hidden="true"></i></h6>
+                                        </a>
                                 <% end %>
                             </div>
                         </div>
