@@ -50,7 +50,7 @@
                   <th scope="row">
                     <h4 class="price">Current Price: 
                   </th>
-                  <td><span class="size"> <%= @product.price-(@product.price*@product.sale/100) %> Rs</span></h4></td>
+                  <td><span class="size"> <%= @product.sale_price %> Rs</span></h4></td>
                 </tr>
                 <% else %>
                 <tr>

@@ -5,7 +5,7 @@ class LineItem < ApplicationRecord
 
   def total_price
     if self.product.sale
-      self.quantity * (self.product.price - (self.product.price*self.product.sale/100))
+      self.quantity * self.product.sale_price
     else
       self.quantity * self.product.price
     end

@@ -22,14 +22,14 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.user_id = current_user.id
-    current_cart.line_items.each do |item|
+    @current_cart.line_items.each do |item|
+      @order.total_bill += item.total_price
       @order.line_items << item
-      item.cart_id = nil
     end
     @order.save
-    Cart.destroy(session[:cart_id])
-    session[:cart_id] = nil
-    redirect_to root_path
+    # Cart.destroy(session[:cart_id])
+    # session[:cart_id] = nil
+    render 'thankyou.html.erb'
   end
 
 private

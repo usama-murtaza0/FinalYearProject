@@ -27,10 +27,9 @@
                                             <h5 class="card-title">
                                             <% if product.sale? %>
                                                 <span class="text-muted text-decoration-line-through"><%= product.price %></span>
-                                                <%= product.price-(product.price*product.sale/100) %>
+                                                <%= product.sale_price %>
                                                 <label class="card-subtitle text-muted">Rs</h5>
                                                 </label>
-                                                <% product.price = product.price-(product.price*product.sale) %>
                                             <% else %>
                                                 <%= product.price %>
                                                 <label class="card-subtitle text-muted">Rs</h5>

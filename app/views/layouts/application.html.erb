@@ -38,11 +38,7 @@
 
     <header>
       <%= render 'layouts/navbar' %>
-    </header>
-    
-    <%= yield %>
-    
-    <% if notice %>
+          <% if notice %>
     <div class="alert alert-success alert-dismissable">
       <span><%= notice %></span>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -58,6 +54,11 @@
         </button>
       </div>
     <% end %>
+    </header>
+    
+    <%= yield %>
+    
+
 
     <footer>
       <%= render 'layouts/footer' %>

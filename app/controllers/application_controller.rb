@@ -16,7 +16,9 @@ before_action :categories, :set_cart
   end
 
   def set_cart
-    @current_cart ||= Cart.find_or_create_by(user_id: current_user.id)
+    if current_user
+      @current_cart ||= Cart.find_or_create_by(user_id: current_user.id)
+    end
   end
 
   def categories

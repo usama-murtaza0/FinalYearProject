@@ -17,6 +17,7 @@ module FinalYearProject
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.eager_load_paths << Rails.root.join("app/services")
+    config.action_mailer.default_url_options = { host: "example.com" }
   end
 end
