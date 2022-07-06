@@ -50,7 +50,7 @@ before_action :categories, :set_cart
 
   protected
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:user_name, :email, :password, :user_type, :picture, :contact, :state, :city, :postal_code, :address)}
+      devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:user_name, :email, :password, :password_confirmation, :user_type, :picture, :contact, :state, :city, :postal_code, :address)}
       devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:user_name, :email, :password, :current_password, :picture, :user_type, :contact, :state, :city, :postal_code, :address)}
     end
 end

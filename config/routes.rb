@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'charges/new'
+  get 'charges/create'
   get 'carts/show'
   get 'carts/:id' => "carts#show", as: "cart"
   delete 'carts/:id' => "carts#destroy"
@@ -38,6 +40,8 @@ Rails.application.routes.draw do
       get :search
     end
   end
+
+  resources :charges, only: [:new, :create]
   
   root to: "home#index"  
 

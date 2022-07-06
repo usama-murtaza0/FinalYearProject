@@ -18,7 +18,7 @@
                                 <i class="fa fa-circle text-muted"></i>
                             </span>
                         </div>
-                        <%= f.text_field :title, autofocus: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Product Title" %>
+                        <%= f.text_field :title, autofocus: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Product Title", :required => 'required' %>
                     </div>
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
@@ -26,7 +26,7 @@
                                 <i class="fa fa-list-alt text-muted"></i>
                             </span>
                         </div>
-                        <%= f.text_field :description, autofocus: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Product Description" %>
+                        <%= f.text_field :description, autofocus: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Product Description", :required => 'required', minlength: 100 %>
                     </div>
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
@@ -34,7 +34,7 @@
                                 <i class="fa fa-usd text-muted"></i>
                             </span>
                         </div>
-                        <%= f.number_field :price, autofocus: true, autocomplete: "email", class: "form-control bg-white border-left-0 border-md", placeholder: "Price" %> 
+                        <%= f.number_field :price, autofocus: true, autocomplete: "email", class: "form-control bg-white border-left-0 border-md", placeholder: "Price", :required => 'required' %> 
                     </div>
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
@@ -50,7 +50,7 @@
                                 <i class="fa fa-sort-numeric-asc text-muted"></i>
                             </span>
                         </div>
-                        <%= f.number_field :quantity, class: "form-control bg-white border-left-0 border-md", placeholder: "Stock Available" %>
+                        <%= f.number_field :quantity, class: "form-control bg-white border-left-0 border-md", placeholder: "Stock Available", :required => 'required' %>
                     </div>
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
@@ -58,7 +58,7 @@
                                 <i class="fa fa-gift text-muted"></i>
                             </span>
                         </div>
-                        <%= f.text_field :packing, class: "form-control bg-white border-left-0 border-md", placeholder: "Product Packing" %>
+                        <%= f.text_field :packing, class: "form-control bg-white border-left-0 border-md", placeholder: "Product Packing", :required => 'required' %>
                     </div>
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
@@ -74,7 +74,7 @@
                                 <i class="fa fa-circle text-muted"></i>
                             </span>
                         </div>
-                        <%= f.text_field :size, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "Size" %>
+                        <%= f.text_field :size, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "Size", :required => 'required' %>
                     </div>
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
@@ -82,7 +82,7 @@
                                 <i class="fa fa-files-o text-muted"></i>
                             </span>
                         </div>
-                        <%= f.file_field :pictures, multiple: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Product Picture" %>
+                        <%= f.file_field :pictures, multiple: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Product Picture", :required => 'required' %>
                     </div>
                     <div class="form-group-sign_up col-lg-12 mx-auto mb-0">
                         <%= f.submit "Create Listing" , { class: "btn btn-primary btn-block py-2 font-weight-bold" } %>

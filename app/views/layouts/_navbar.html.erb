@@ -39,6 +39,7 @@
                     <% end %>
                   </li>
                   <% if current_user %>
+                    <li><a href="<%= cart_path(@current_cart)%>"><i class="fa fa-shopping-cart"></i> View Cart</a></li>
                     <% if current_user.user_type == "Vendor" %>
                       <li> <a href="<%= new_product_path %>">Create Listing</a> </li>
                     <% end %>

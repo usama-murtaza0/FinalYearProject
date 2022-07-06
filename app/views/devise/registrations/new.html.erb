@@ -15,7 +15,7 @@
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <%= f.text_field :user_name, autofocus: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Full Name" %>
+                        <%= f.text_field :user_name, autofocus: true, class: "form-control bg-white border-left-0 border-md", placeholder: "Full Name", :required => 'required' %>
                     </div>
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
@@ -23,7 +23,7 @@
                                 <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div>
-                        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control bg-white border-left-0 border-md", placeholder: "Email Address" %> 
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control bg-white border-left-0 border-md", placeholder: "Email Address", :required => 'required' %> 
                     </div>
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
@@ -34,7 +34,7 @@
                         <select id="countryCode" name="countryCode" style="max-width: 80px" class="custom-select form-control-sign_up bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
                             <option value="">+92</option>
                         </select>
-                        <%= f.number_field :contact, autofocus: true, class: "form-control bg-white border-md border-left-0 pl-3", placeholder: "Contact No" %>
+                        <%= f.number_field :contact, autofocus: true, class: "form-control bg-white border-md border-left-0 pl-3", placeholder: "Contact No", :required => 'required' %>
                     </div>
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
@@ -66,7 +66,7 @@
                                 <i class="fa fa-flag text-muted"></i>
                             </span>
                         </div>
-                        <%= f.text_field :state, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "State" %>
+                        <%= f.text_field :state, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "State", :required => 'required' %>
                     </div>
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
@@ -74,7 +74,7 @@
                                 <i class="fa fa-flag text-muted"></i>
                             </span>
                         </div>
-                        <%= f.text_field :city, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "City" %>
+                        <%= f.text_field :city, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "City", :required => 'required' %>
                     </div>
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
@@ -82,7 +82,7 @@
                                 <i class="fa fa-road text-muted"></i>
                             </span>
                         </div>
-                        <%= f.number_field :postal_code, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "Postal Code" %>
+                        <%= f.number_field :postal_code, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "Postal Code", :required => 'required' %>
                     </div>
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
@@ -90,7 +90,7 @@
                                 <i class="fa fa-road text-muted"></i>
                             </span>
                         </div>
-                        <%= f.text_field :address, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "Address" %>
+                        <%= f.text_field :address, autofocus: true, class: "form-control hidden bg-white border-left-0 border-md", placeholder: "Address", :required => 'required' %>
                     </div>
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">

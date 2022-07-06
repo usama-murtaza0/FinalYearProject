@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_05_184858) do
+ActiveRecord::Schema.define(version: 2022_07_06_132127) do
 
   create_table "carts", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2022_07_05_184858) do
     t.string "address"
     t.integer "postal_code"
     t.integer "total_bill", default: 0
+    t.string "payment_status"
   end
 
   create_table "products", charset: "utf8mb4", force: :cascade do |t|
