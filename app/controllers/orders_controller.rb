@@ -6,6 +6,11 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_vendor = false
+    if current_user.user_type == "Vendor"
+      vendor_product_ids = Product.where(user_id: current_user.id).pluck(:id)
+      @order_vendor = Order.joins(:line_items).where("orders.id = line_items.order_id and line_items.product_id in (?) ", vendor_product_ids).include?(@order)
+    end
   end
 
   def new
@@ -26,7 +31,7 @@ class OrdersController < ApplicationController
       @order.total_bill += item.total_price
       @order.line_items << item
     end
-    
+
     @order.save
 
     @current_cart.destroy
@@ -36,8 +41,19 @@ class OrdersController < ApplicationController
     else
       @order.payment_status = 'COD'
       @order.save
-      render 'thankyou.html.erb'
+      redirect_to thankyou_orders_path
     end
+  end
+
+  def thankyou
+    render 'thankyou.html.erb'
+  end
+  
+  def change_status
+    @order = Order.find(params[:id])
+    @order.delivery_status = params.require(:delivery_status).to_i
+    @order.save
+    redirect_to order_path(@order.id)
   end
 
 private

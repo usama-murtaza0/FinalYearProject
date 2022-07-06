@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_06_132127) do
+ActiveRecord::Schema.define(version: 2022_07_06_192444) do
 
   create_table "carts", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -41,13 +41,13 @@ ActiveRecord::Schema.define(version: 2022_07_06_132127) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.string "payment_type"
-    t.boolean "delivery_status", default: false
     t.string "city"
     t.string "state"
     t.string "address"
     t.integer "postal_code"
     t.integer "total_bill", default: 0
     t.string "payment_status"
+    t.integer "delivery_status", default: 0
   end
 
   create_table "products", charset: "utf8mb4", force: :cascade do |t|
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2022_07_06_132127) do
     t.integer "sale"
     t.string "packing"
     t.json "pictures"
+    t.boolean "product_status"
   end
 
   create_table "reviews", charset: "utf8mb4", force: :cascade do |t|
@@ -97,7 +98,6 @@ ActiveRecord::Schema.define(version: 2022_07_06_132127) do
     t.string "address"
     t.integer "postal_code"
     t.boolean "deactivated", default: false
-    t.boolean "order_status", default: false
     t.float "latitude"
     t.float "longitude"
     t.index ["email"], name: "index_users_on_email", unique: true

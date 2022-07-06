@@ -2,10 +2,10 @@ require 'pry'
 class ProductsController < ApplicationController
   include Reviewable
 
-  before_action :find_product, only: [:show, :edit, :update, :destroy]
+  before_action :find_product, only: [:show, :edit, :update, :destroy, :relist, :delist]
 
   def index
-    @products = Product.all.order("created_at DESC")
+    @products = Product.all.order("created_at DESC").where(product_status: false)
   end
   
   def search
@@ -48,6 +48,18 @@ class ProductsController < ApplicationController
     @product.destroy
     redirect_to root_path
   end 
+  
+  def delist
+    @product.product_status = true
+    @product.save
+    redirect_to products_user_path(@product.user_id)
+  end
+  
+  def relist
+    @product.product_status = false
+    @product.save
+    redirect_to products_user_path(@product.user_id)
+  end
 
   private
   

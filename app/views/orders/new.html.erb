@@ -83,11 +83,4 @@
         </div>
     </div>
 </div>
-<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-description="Payment for purchase on organic products store"
-    data-amount="50000"
-    data-email="<%= @order.email %>"
-    data-locale="auto">
-</script>
 <% end %> 

@@ -7,7 +7,7 @@ class ChargesController < ApplicationController
     @order = Order.find(params[:id])
     if @order.payment_status == 'paid'
       flash[:notice] = "This order was already paid for."
-      render 'orders/thankyou.html.erb'
+      redirect_to thankyou_orders_path
     end
   end
 
@@ -31,12 +31,13 @@ class ChargesController < ApplicationController
       @order.payment_status = 'paid'
       @order.save
       flash[:notice] = "We have received your payment"
-      render 'orders/thankyou.html.erb'
+      redirect_to thankyou_orders_path
     else
       raise "Payment wasn't able to process"
     end
   rescue Stripe::CardError => e
     flash[:error] = e.message
+    flash[:notice] = "Your payment type is changed to cash on delivery"
     redirect_to new_charge_path
   end
   

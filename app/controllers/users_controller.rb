@@ -12,9 +12,12 @@ class UsersController < ApplicationController
   end
 
   def orders
-  end
-
-  def orders
+    if current_user.user_type == "Vendor" 
+      vendor_product_ids = Product.where(user_id: current_user.id).pluck(:id)
+      @orders = Order.joins(:line_items).where("orders.id = line_items.order_id and line_items.product_id in (?) ", vendor_product_ids)
+    elsif current_user.user_type = "Customer"
+      @orders = Order.all.where(user_id: current_user.id)
+    end
   end
 
   def edit

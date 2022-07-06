@@ -47,11 +47,11 @@
                                                 </p>
                                             <% elsif current_user.user_type =="Vendor" %>
                                                 <h6>Products</h6>
-                                                    <p>
-                                                        <a href = <%= products_user_path(@user.id) %> >
-                                                            <h6>Your listed products</h6>
-                                                        </a>
-                                                    </p>
+                                                <p>
+                                                    <a href = <%= products_user_path(@user.id) %> >
+                                                        <h6>Your listed products</h6>
+                                                    </a>
+                                                </p>
                                             <% else %>
                                                 <h6>Orders</h6>
                                                 <p>
@@ -63,15 +63,20 @@
                                     </div>
                                 </div>
                                 <% if current_user.user_type == "Admin" %>
-                                    <a href = <%= products_user_path(@user.id) %> >
+                                    <a href="<%= products_user_path(@user.id) %>" >
                                         <h6>Products Listed by this user</h6>
                                     </a>
+                                    <% if @user.deactivated %>
+                                        <%= link_to "Activate this user", activate_user_path(:user_id => @user.id), method: :post, class: "btn btn-secondary" %>
+                                    <% else %>
+                                        <%= link_to "Deactivate this user", deactivate_user_path(:user_id => @user.id), method: :post, class: "btn btn-danger" %>
+                                    <% end %>
                                     <% elsif current_user.user_type == "Vendor" %>
                                         <a href = <%= new_product_path %> >
                                             <h6>Create a new listing  <i class="fa fa-plus" aria-hidden="true"></i></h6>
                                         </a>
-                                        <a href = <%= orders_user_path(@user.id) %> >
-                                            <h6>Order history  <i class="fas fa-history" aria-hidden="true"></i></h6>
+                                        <a href = <%= orders_user_path(@user.id) %>>
+                                            <h6>Order Placed on your products <i class="fa fa-history" aria-hidden="true"></i></h6>
                                         </a>
                                 <% end %>
                             </div>

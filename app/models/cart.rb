@@ -12,6 +12,3 @@ class Cart < ApplicationRecord
   end
 end
 
-
-# Order.joins(:line_items).where("orders.id = line_items.order_id and line_items.product_id in (?) ", vendor_product_ids)
-# vendor_product_ids = Product.where(user_id: 5).pluck(:id)

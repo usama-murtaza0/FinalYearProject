@@ -21,8 +21,14 @@ Rails.application.routes.draw do
   
   resources :reviews
 
-  resources :orders
-
+  resources :orders do
+    member do 
+      post :change_status
+    end
+    collection do
+      get :thankyou
+    end
+  end
   resources :suggestions
   
   devise_for :users
@@ -39,6 +45,10 @@ Rails.application.routes.draw do
   resources :products do
     collection do
       get :search
+    end
+    member do 
+      post :delist
+      post :relist
     end
   end
 
