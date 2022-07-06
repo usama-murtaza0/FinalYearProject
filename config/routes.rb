@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   
-  get 'charges/new'
-  get 'charges/create'
+  get 'charges/:id/new_charge' => 'charges#new_charge', as: 'new_charge'
   get 'carts/show'
   get 'carts/:id' => "carts#show", as: "cart"
   delete 'carts/:id' => "carts#destroy"
@@ -23,6 +22,8 @@ Rails.application.routes.draw do
   resources :reviews
 
   resources :orders
+
+  resources :suggestions
   
   devise_for :users
 

@@ -5,19 +5,8 @@ class SuggestionsController < ApplicationController
     end
 
     def create
-        @suggestion = Suggestion.new(suggestion_params)
-        @suggestion.user_id = current_user.id
-        if @suggestion.save
-            redirect_to root_path
-        else
-            render 'new'
-        end
+        @suggestion = Suggestion.create(body: params.require(:body))
+        flash[:notice] = "Your suggestion was submitted successfully!"
+        redirect_to root_path
     end
-
-    private
-    
-    def suggestion_params
-        params.require(:suggestion).permit(:body)
-    end
-
 end

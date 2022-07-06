@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   
   def index
-    @orders = Order.all
+    @orders = Order.all.where(user_id: current_user.id)
   end
 
   def show
@@ -21,36 +21,23 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    if @order.payment_type == "By Card"
-      render 'stripe_payment'
-    end
     @order.user_id = current_user.id
     @current_cart.line_items.each do |item|
       @order.total_bill += item.total_price
       @order.line_items << item
     end
     
-    customer = Stripe::Customer.create(
-      email: @order.email,
-      source: params[:stripeToken]
-    )
-
-    charge = Stripe::Charge.create(
-      customer: customer.id,
-      amount: @order.total_bill*100,
-      description: 'organic products payment',
-      currency: 'pkr'
-    )
-    if charge.present?
-      @order.payment_status = "Paid"  
-    else
-      @order.payment_status = "COD"
-    end
     @order.save
-    render 'thankyou.html.erb'
 
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
+    @current_cart.destroy
+
+    if @order.payment_type == 'By Card'
+      redirect_to new_charge_path(@order.id)
+    else
+      @order.payment_status = 'COD'
+      @order.save
+      render 'thankyou.html.erb'
+    end
   end
 
 private

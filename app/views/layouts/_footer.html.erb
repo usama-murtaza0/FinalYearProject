@@ -38,10 +38,10 @@
                     <div class="col-lg-4 col-md-6 col-sm-6 ">
                         <div class="address">
                             <h3>Give your suggestion</h3>
-                            <form class="news">
-                                <input class="newslatter" placeholder="Feedback" type="text" name="Suggestion">
-                                <button class="submit">Submit</button>
-                            </form>
+                            <%= form_tag(suggestions_path, method: 'post') do %>
+                                <%= text_field_tag :body, nil, class: "newslatter", placeholder: "Give Suggestion" %>
+                                <%= button_tag "Submit" , { class: "submit" } %>
+                            <% end %>
                         </div>
                     </div>
                 </div>

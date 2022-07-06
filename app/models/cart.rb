@@ -1,5 +1,5 @@
 class Cart < ApplicationRecord
-  has_many :line_items, dependent: :destroy
+  has_many :line_items
   has_many :products, through: :line_items
   belongs_to :user
 
@@ -11,3 +11,7 @@ class Cart < ApplicationRecord
     return sum
   end
 end
+
+
+# Order.joins(:line_items).where("orders.id = line_items.order_id and line_items.product_id in (?) ", vendor_product_ids)
+# vendor_product_ids = Product.where(user_id: 5).pluck(:id)
