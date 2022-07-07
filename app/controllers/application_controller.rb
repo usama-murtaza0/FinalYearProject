@@ -1,17 +1,24 @@
 class ApplicationController < ActionController::Base  
 protect_from_forgery with: :exception
 
-before_action :current_cart, :check_user, :configure_permitted_parameters, if: :devise_controller?
+before_action :current_cart, :configure_permitted_parameters, if: :devise_controller?
 before_action :categories, :set_cart
 
   def after_sign_in_path_for(user)
     if current_user.user_type == "Admin"
+      current_user.deactivated = false
       @suggestions = Suggestion.all
       users_path(@user)
     elsif current_user.user_type == "Customer"
+      current_user.deactivated = false
       products_path
-    else
-      user_path(current_user.id)
+    elsif current_user.user_type == "Vendor"
+      if current_user.deactivated
+        flash[:alert] = "Your profile is deactivated. Admin is processing your profile."
+        user_path(current_user.id)
+      else
+        user_path(current_user.id)
+      end
     end
   end
 
@@ -27,9 +34,6 @@ before_action :categories, :set_cart
 
   private
 
-  def check_user
-    sign_out current_user if current_user && current_user.disabled?
-  end
 
   def current_cart
     if session[:cart_id]

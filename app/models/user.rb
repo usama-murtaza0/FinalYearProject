@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_one :cart
 
   validates_uniqueness_of :contact
-  #validates :contact , presence : true
   geocoded_by :full_address
   after_validation :geocode
 
@@ -22,10 +21,6 @@ class User < ApplicationRecord
 
   def disabled?
     deactivated == false
-  end
-
-  def active_for_authentication?
-    super && !deactivated
   end
 
 end

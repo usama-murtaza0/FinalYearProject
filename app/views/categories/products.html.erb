@@ -23,7 +23,7 @@
                                             <%= image_tag "placeholder_product.png" , class: "placeholder-img" %>
                                         <% end %>
                                         <div class="text-center">
-                                            <h3 class="card-header"><%= truncate(product.title, :length => 25) %></h3>
+                                            <h3 class="card-header"><%= truncate(product.title, :length => 20) %></h3>
                                             <div class="card-body">
                                                 <h5 class="card-title">
                                                 <% if product.sale? %>

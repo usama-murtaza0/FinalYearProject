@@ -1,3 +1,125 @@
 // Place all the styles related to the charges controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+body {
+    margin-top: 60px;
+}
+
+.charges-card-big-shadow {
+    max-width: 320px;
+    position: relative;
+}
+
+.coloured-cards .charges-card {
+    margin-top: 30px;
+}
+
+.charges-card[data-radius="none"] {
+    border-radius: 0px;
+}
+
+.charges-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
+    background-color: #FFFFFF;
+    color: #252422;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+
+.charges-card[data-background="image"] .title,
+.charges-card[data-background="image"] .stats,
+.charges-card[data-background="image"] .category,
+.charges-card[data-background="image"] .description,
+.charges-card[data-background="image"] .content,
+.charges-card[data-background="image"] .card-footer,
+.charges-card[data-background="image"] small,
+.charges-card[data-background="image"] .content a,
+.charges-card[data-background="color"] .title,
+.charges-card[data-background="color"] .stats,
+.charges-card[data-background="color"] .category,
+.charges-card[data-background="color"] .description,
+.charges-card[data-background="color"] .content,
+.charges-card[data-background="color"] .card-footer,
+.charges-card[data-background="color"] small,
+.charges-card[data-background="color"] .content a {
+    color: #FFFFFF;
+}
+
+.charges-card.charges-card-just-text .content {
+    padding: 50px 65px;
+    text-align: center;
+}
+
+.charges-card .content {
+    padding: 20px 20px 10px 20px;
+}
+
+.charges-card[data-color="blue"] .category {
+    color: #7a9e9f;
+}
+
+.charges-card .category,
+.charges-card .label {
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+
+.charges-card-big-shadow:before {
+    background-image: url("http://static.tumblr.com/i21wc39/coTmrkw40/shadow.png");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    bottom: -12%;
+    content: "";
+    display: block;
+    left: -12%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+}
+
+h4,
+.h4 {
+    font-size: 1.5em;
+    font-weight: 600;
+    line-height: 1.2em;
+}
+
+h6,
+.h6 {
+    font-size: 0.9em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.charges-card .description {
+    font-size: 16px;
+    color: #66615b;
+}
+
+.charges-content-card {
+    margin-top: 50px;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+/*======== COLORS ===========*/
+.charges-card[data-color="blue"] {
+    background: #b8d8d8;
+}
+
+.charges-card[data-color="blue"] .description {
+    color: #506568;
+}
+.charges-center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}

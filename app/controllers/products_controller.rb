@@ -46,17 +46,17 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to root_path
+    redirect_to user_path(current_user.id)
   end 
   
   def delist
-    @product.product_status = true
+    @product.product_status = false
     @product.save
     redirect_to products_user_path(@product.user_id)
   end
   
   def relist
-    @product.product_status = false
+    @product.product_status = true
     @product.save
     redirect_to products_user_path(@product.user_id)
   end

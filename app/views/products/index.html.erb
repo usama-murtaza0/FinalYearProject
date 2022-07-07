@@ -14,6 +14,11 @@
                                    <%= product.sale %>%Off
                                 </div>
                             <% end %>
+                            <% if product.quantity == 0 %>
+                                <div class="badge text-white-badge position-absolute" style="top: 0.5rem; left: 0.5rem">
+                                   Out of stock
+                                </div>
+                            <% end %>
                             <a href="<%= product_path(product.id) %>">
                                 <div class="card-block">
                                     <% if product.pictures.present? %>
@@ -22,7 +27,7 @@
                                         <%= image_tag "placeholder_product.png" , class: "placeholder-img" %>
                                     <% end %>
                                     <div class="text-center">
-                                        <h3 class="card-header"><%= truncate(product.title, :length => 25) %></h3>
+                                        <h3 class="card-header"><%= truncate(product.title, :length => 20) %></h3>
                                         <div class="card-body">
                                             <h5 class="card-title">
                                             <% if product.sale? %>
@@ -41,7 +46,9 @@
                             <% 
                             url = current_user ? line_items_path(:product_id => product.id) : new_user_session_path                 
                             %>
-                            <%= button_to "Add to cart", url, { class: "btn btn-card-index" } %>
+                            <% unless product.quantity == 0 %>
+                                <%= button_to "Add to cart", url, { class: "btn btn-card-index" } %>
+                            <% end %>
                     </div>
         </div>
     </div>

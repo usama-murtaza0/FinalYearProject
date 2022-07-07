@@ -30,8 +30,10 @@ class OrdersController < ApplicationController
     @current_cart.line_items.each do |item|
       @order.total_bill += item.total_price
       @order.line_items << item
+      @product = Product.find(item.product_id)
+      @product.quantity-1
+      @product.save
     end
-
     @order.save
 
     @current_cart.destroy

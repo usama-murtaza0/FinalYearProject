@@ -14,6 +14,7 @@ class LineItemsController < ApplicationController
         end
 
         @line_item.save
+        flash[:notice] = "Product added to cart"
         redirect_to products_path
     end
 

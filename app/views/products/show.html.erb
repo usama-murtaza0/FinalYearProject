@@ -96,9 +96,13 @@
               <div style="display: inline-block;">
                 <% if @product.user_id == current_user.id %>
                   <%= link_to "Edit Listing", edit_product_path(@product.id), class: "add-to-cart btn btn-default" %>
+                  <br>
+                  <%= button_to "Delete Product", product_path(@product.id), method: :delete, class: "btn btn-danger" , data: { confirm: "Are you sure?" } %>
                 <% end %>
                 <% unless @product.user_id == current_user.id %>
-                  <%= link_to "Add to cart", line_items_path(:product_id => @product.id), method: :post, class: "add-to-cart btn btn-default" %>
+                  <% unless @product.quantity == 0 %>
+                    <%= link_to "Add to cart", line_items_path(:product_id => @product.id), method: :post, class: "add-to-cart btn btn-default" %>
+                  <% end %>
                 <% end %>
                 <% if @product.user_id == current_user.id %>
                   <% elsif @eligible_for_review == true %>   

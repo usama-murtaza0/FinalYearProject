@@ -4,10 +4,11 @@
         <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
             <% if @product.pictures.present? %>
                 <img src="<%= @product.pictures[0] %>" class="img-fluid mb-3 d-none d-md-block"/>
+                <h1>Edit listing</h1>
             <% else %>
                 <%= image_tag 'v1.jpg', class: "img-fluid mb-3 d-none d-md-block" %>
+                <h1>Create a new listing</h1>
             <% end %>
-            <h1>Create a new listing</h1>
         </div>
         <div class="col-md-7 col-lg-6 ml-auto">
             <form action="#">
