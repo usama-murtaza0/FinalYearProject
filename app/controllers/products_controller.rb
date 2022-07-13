@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy, :relist, :delist]
 
   def index
-    @products = Product.all.order("created_at DESC").where(product_status: false)
+    @products = Product.all.order("created_at DESC")
   end
   
   def search
