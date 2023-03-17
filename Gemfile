@@ -64,3 +64,4 @@ gem 'geocoder'
 gem 'stripe'
 gem 'dotenv-rails'
 gem 'pg'
+gem "rack", ">= 2.2.6.4"
